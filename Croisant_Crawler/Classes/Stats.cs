@@ -1,4 +1,4 @@
-
+using Croisant_Crawler.Data;
 
 public class Stats
 {
@@ -6,8 +6,9 @@ public class Stats
 
     public string Name { get; set; }
 
-    public int HP { get; set; }
-    public int MaxHP { get; set; }
+    public ValueInRangeInt HP { get; set; }
+    // public int HP { get; set; }
+    // public int MaxHP { get; set; }
 
     // Flat damage reduction.
     public int Defence { get; set; }
