@@ -6,7 +6,7 @@ namespace Croisant_Crawler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World! ⚒️");
+            Game.Start();
         }
     }
 }
