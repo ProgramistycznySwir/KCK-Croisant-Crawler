@@ -1,3 +1,5 @@
+using System;
+
 namespace Croisant_Crawler.Data
 {
     public struct RangeInt
