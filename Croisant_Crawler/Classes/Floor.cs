@@ -11,13 +11,22 @@ namespace Croisant_Crawler
         public RectRangeInt mapBounds { get; }
         public int level { get; }
 
-        public Room[,] rooms;
-        public Room GetRoom(Vector2Int pos)
-            => rooms[pos.x, pos.y];
+        public int roomCount;
+
+        // public Room[,] rooms;
+        public readonly Dictionary<Vector2Int, Room> rooms = new();
+        // public Room GetRoom(Vector2Int pos)
+        //     => rooms[pos.x, pos.y];
+        void SetRoom(Vector2Int pos, Room room)
+            => rooms.Add(pos, room);
+        void AddRoom(Vector2Int pos, Connections connections = new Connections())
+        {
+            SetRoom(pos, new Room(pos, connections));
+        }
 
         public Vector2Int startRoomPos;
 
-        public Floor(Vector2Int mapSize, int level)
+        public Floor(Vector2Int mapSize, int level = 1, int roomCount = 24)
         {
             this.mapBounds = new RectRangeInt(mapSize);
             this.level = level;
@@ -28,7 +37,15 @@ namespace Croisant_Crawler
         void GenerateRooms()
         {
             startRoomPos = mapBounds.RandomVector2Int;
-            
+            AddRoom(startRoomPos);
+
+            for(int i = 1; i < roomCount; i++)
+            {
+                Room curr = rooms.Values.Where(room => room.connections.IsFull is false).;
+                do{
+                    curr = rooms.
+                } while(curr.connections.IsFull is false);
+            }
         }
 
         /// <summary>

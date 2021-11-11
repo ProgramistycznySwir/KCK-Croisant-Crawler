@@ -17,16 +17,8 @@ namespace Croisant_Crawler.Data
         public bool IsInRange(float value) => (value >= min && value <= max);
         public bool IsInRange(int value)   => (value >= min && value <= max);
 
-        /// <summary>
-        /// Returns random float in range
-        /// </summary>
-        /// <returns> Random float in range</returns>
         public float RandomFloat => MyMath.Lerp(min, max, MyMath.RandomFloat);
-        /// <summary>
-        /// Returns random int in range
-        /// </summary>
-        /// <returns> Random int in range</returns>
-        public int RandomInt => (int)MyMath.Lerp(min, max, MyMath.RandomFloat);
+        public int RandomInt => (int)RandomFloat;
 
         public override string ToString() => $"RangeInt: ({min}, {max})";
     }

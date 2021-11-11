@@ -5,10 +5,16 @@ namespace Croisant_Crawler
 {
     public class Room
     {
-        public Vector2Int position;
+        public Vector2Int position { get; }
         
         // Whether this room has connection with room { up, right, down, left }.
-        public bool[] connections = new bool[4];
+        public Connections connections;
+
+        public Room(Vector2Int position, Connections connections = new Connections())
+        {
+            this.position = position;
+            this.connections = connections;
+        }
 
         public Vector2Int[] GetWalkableRooms()
         {

@@ -17,10 +17,6 @@ namespace Croisant_Crawler.Data
         public bool IsInRange(Vector2Int value) => (x.IsInRange(value.x) && y.IsInRange(value.x));
         // public bool IsInRange(int value)   => (value >= min && value <= max);
 
-        /// <summary>
-        /// Returns random Vector2Int in range
-        /// </summary>
-        /// <returns> Random Vector2Int in range</returns>
         public Vector2Int RandomVector2Int => new Vector2Int(x.RandomInt, y.RandomInt);
 
         public override string ToString() => $"SquareRangeInt: ({x}, {y})";
