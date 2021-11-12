@@ -1,3 +1,5 @@
+using System;
+
 namespace Croisant_Crawler.Data
 {
     public struct Connections
@@ -13,6 +15,15 @@ namespace Croisant_Crawler.Data
         public bool IsLeft  => ((data >> 3) % 2) is 1;
 
         public bool IsFull => (data & 0b00001111) == 0b00001111;
+
+        public bool Is(int num)
+            => num switch{
+                0 => IsUp,
+                1 => IsRight,
+                2 => IsDown,
+                3 => IsLeft,
+                _ => throw new ArgumentException()
+            };
 
         public static Connections Up    => new Connections { data = 0b00000001};
         public static Connections Right => new Connections { data = 0b00000010};

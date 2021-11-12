@@ -13,15 +13,20 @@ namespace Croisant_Crawler
 
         public int roomCount;
 
-        // public Room[,] rooms;
+        // Room[,] rooms;
+        // List<Room> roomList;
         public readonly Dictionary<Vector2Int, Room> rooms = new();
+
+        public Room GetStartRoom()
+            => rooms[startRoomPos];
         // public Room GetRoom(Vector2Int pos)
         //     => rooms[pos.x, pos.y];
-        void SetRoom(Vector2Int pos, Room room)
-            => rooms.Add(pos, room);
-        void AddRoom(Vector2Int pos, Connections connections = new Connections())
+        // void SetRoom(Vector2Int pos, Room room)
+        //     => rooms[pos.x, pos.y] = room;
+        void CreateRoom(Vector2Int pos, int distanceFromStart, List<Room> connections = null)
         {
-            SetRoom(pos, new Room(pos, connections));
+            // SetRoom(pos, new Room(pos, connections));
+            rooms.Add(pos, new Room(pos, distanceFromStart, connections));
         }
 
         public Vector2Int startRoomPos;
@@ -30,21 +35,51 @@ namespace Croisant_Crawler
         {
             this.mapBounds = new RectRangeInt(mapSize);
             this.level = level;
+            this.roomCount = roomCount;
 
-            rooms = new Room[mapSize.x, mapSize.y];
+            // rooms = new Room[mapSize.x, mapSize.y];
+            // roomList = new List<Room>(roomCount);
         }
 
         void GenerateRooms()
         {
             startRoomPos = mapBounds.RandomVector2Int;
-            AddRoom(startRoomPos);
+            CreateRoom(startRoomPos, 0);
 
+            // Room placement:
             for(int i = 1; i < roomCount; i++)
             {
-                Room curr = rooms.Values.Where(room => room.connections.IsFull is false).;
-                do{
-                    curr = rooms.
-                } while(curr.connections.IsFull is false);
+                Room curr;
+                List<Vector2Int> candidatePositions = new(3);
+                // List<Room> candidates = rooms.Values.Where(room => room.connections.IsFull is false).ToList();
+                while(true)
+                {
+                    // TODO: introduce cache'ing...
+                    // Pick random room with not all connections full:
+                    do{
+                        curr = rooms.Values.Skip(MyMath.rng.Next(i - 1)).Take(1).First();
+                        // curr = rooms.Values[MyMath.rng.Next(i - 1)];
+                    } while(curr.connections.Count < 4);
+                    
+                    // Get all possible adjacent positions:
+                    if(rooms.ContainsKey(curr.position + Vector2Int.Up) is false)
+                        candidatePositions.Add(curr.position + Vector2Int.Up);
+                    if(rooms.ContainsKey(curr.position + Vector2Int.Right) is false)
+                        candidatePositions.Add(curr.position + Vector2Int.Right);
+                    if(rooms.ContainsKey(curr.position + Vector2Int.Down) is false)
+                        candidatePositions.Add(curr.position + Vector2Int.Down);
+                    if(rooms.ContainsKey(curr.position + Vector2Int.Left) is false)
+                        candidatePositions.Add(curr.position + Vector2Int.Left);
+
+                    if(candidatePositions.Count is 0)
+                        continue;
+                    break;
+                }
+
+                // Get random possible adjacent position
+                Vector2Int newRoomPos = candidatePositions[MyMath.rng.Next(candidatePositions.Count)];
+                CreateRoom(newRoomPos, curr.distanceFromStart + 1, new List<Room>{curr});
+                curr.connections.Add(rooms[newRoomPos]);
             }
         }
 
@@ -74,7 +109,7 @@ namespace Croisant_Crawler
                 open.Remove(curr);
                 closed.Add(curr);
 
-                foreach(Vector2Int roomPos in GetRoom(curr).GetWalkableRooms())
+                foreach(Vector2Int roomPos in rooms[curr].GetWalkableRooms())
                 {
                     if (closed.Contains(roomPos) is false
                         && open.Contains(roomPos) is false)
