@@ -14,6 +14,7 @@ namespace Croisant_Crawler.Drawing
         {
             Draw.At(lastPlayerPos.Scale(Draw_Map.roomSize) + Draw_Map.mapCorner + Vector2Int.One, " ");
             Draw.At(player.position.Scale(Draw_Map.roomSize) + Draw_Map.mapCorner + Vector2Int.One, PlayerShape, PlayerColor);
+            lastPlayerPos = player.position;
         }
     }
 }

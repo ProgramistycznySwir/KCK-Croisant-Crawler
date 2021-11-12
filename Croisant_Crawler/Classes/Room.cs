@@ -14,12 +14,26 @@ namespace Croisant_Crawler
         public readonly int distanceFromStart;
 
         public bool IsExplored;
+        public bool IsDangerous => enemies is not null;
+        public List<Stats> enemies;
+
+        public const float EnemyChance = .5f;
+        public const int SafeZoneDistance = 1; // 0 means only startRoom is safe.
+        public const int MaxEnemyCount = 4;
 
         public Room(Vector2Int position, int distanceFromStart, List<Room> connections = null)
         {
             this.position = position;
             this.connections = connections ?? new List<Room>(4);
             this.distanceFromStart = distanceFromStart;
+
+            if(distanceFromStart > SafeZoneDistance)
+                enemies = MyMath.RandomFloat < EnemyChance ? new List<Stats>(4) : null;
+            if(IsDangerous)
+            {
+                int enemyCount = MyMath.rng.Next(MaxEnemyCount) + 1;
+                
+            }
         }
 
         public Vector2Int[] GetWalkableRooms()

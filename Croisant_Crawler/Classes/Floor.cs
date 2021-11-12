@@ -33,9 +33,11 @@ namespace Croisant_Crawler
 
         public Floor(Vector2Int mapSize = default, int level = 1, int roomCount = 24)
         {
+            // Normalizing.
+            mapSize -= Vector2Int.One;
             this.mapBounds = new RectRangeInt(mapSize == default ? Vector2Int.One * 6 : mapSize);
             this.level = level;
-            this.roomCount = roomCount;
+            this.roomCount = Math.Min(roomCount, (mapSize.x * mapSize.y));
 
             // rooms = new Room[mapSize.x, mapSize.y];
             // roomList = new List<Room>(roomCount);
