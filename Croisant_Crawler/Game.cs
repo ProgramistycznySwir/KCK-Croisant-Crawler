@@ -8,13 +8,14 @@ namespace Croisant_Crawler
         public static void Start()
         {
             Console.Clear();
+            Console.CursorVisible = false;
 
             Floor floor = new Floor();
 
             Draw_Map.DrawMap(floor, drawAll: true);
             // Draw_Map.DrawMap(floor, drawAll: false);
-
-
+            PlayerStats player = new PlayerStats(floor.startRoomPos);
+            Draw_Player.DrawPlayer(player);
         }
     }
 }

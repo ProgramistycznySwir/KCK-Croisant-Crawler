@@ -6,7 +6,7 @@ namespace Croisant_Crawler.Drawing
     public static class Draw_Map
     {
         public static readonly Vector2Int roomSize = new Vector2Int(5, 4);
-        public static Vector2Int mapCorner;
+        public static Vector2Int mapCorner { get; private set; }
 
         public static void DrawMap(Floor floor, Vector2Int cornerPos = default, bool drawAll = false)
         {
