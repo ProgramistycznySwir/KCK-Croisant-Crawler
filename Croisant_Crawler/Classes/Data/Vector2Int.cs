@@ -20,6 +20,8 @@ namespace Croisant_Crawler.Data
 
         public float DistanceTo(Vector2Int other)
             => (this - other).Magnitude;
+        public Vector2Int Scale(Vector2Int scalar)
+            => new Vector2Int(x * scalar.x, y * scalar.y);
 
         public static implicit operator Vector2Int((int, int) tuple)
             => new Vector2Int(tuple.Item1, tuple.Item2);

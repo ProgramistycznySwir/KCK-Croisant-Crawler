@@ -11,10 +11,10 @@ namespace Croisant_Crawler
 
             Floor floor = new Floor();
 
-            // Map.DrawMap(floor, drawAll: true);
-            Draw_Map.DrawMap(floor, drawAll: false);
+            Draw_Map.DrawMap(floor, drawAll: true);
+            // Draw_Map.DrawMap(floor, drawAll: false);
 
-            
+
         }
     }
 }
