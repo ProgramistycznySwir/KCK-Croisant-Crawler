@@ -31,20 +31,22 @@ namespace Croisant_Crawler
 
         public Vector2Int startRoomPos;
 
-        public Floor(Vector2Int mapSize, int level = 1, int roomCount = 24)
+        public Floor(Vector2Int mapSize = default, int level = 1, int roomCount = 24)
         {
-            this.mapBounds = new RectRangeInt(mapSize);
+            this.mapBounds = new RectRangeInt(mapSize == default ? Vector2Int.One * 6 : mapSize);
             this.level = level;
             this.roomCount = roomCount;
 
             // rooms = new Room[mapSize.x, mapSize.y];
             // roomList = new List<Room>(roomCount);
+            GenerateRooms();
         }
 
         void GenerateRooms()
         {
             startRoomPos = mapBounds.RandomVector2Int;
             CreateRoom(startRoomPos, 0);
+            rooms[startRoomPos].IsExplored = true;
 
             // Room placement:
             for(int i = 1; i < roomCount; i++)
@@ -59,16 +61,16 @@ namespace Croisant_Crawler
                     do{
                         curr = rooms.Values.Skip(MyMath.rng.Next(i - 1)).Take(1).First();
                         // curr = rooms.Values[MyMath.rng.Next(i - 1)];
-                    } while(curr.connections.Count < 4);
+                    } while(curr.connections.Count == 4);
                     
                     // Get all possible adjacent positions:
-                    if(rooms.ContainsKey(curr.position + Vector2Int.Up) is false)
+                    if(rooms.ContainsKey(curr.position + Vector2Int.Up) is false && mapBounds.IsInRange(curr.position + Vector2Int.Up))
                         candidatePositions.Add(curr.position + Vector2Int.Up);
-                    if(rooms.ContainsKey(curr.position + Vector2Int.Right) is false)
+                    if(rooms.ContainsKey(curr.position + Vector2Int.Right) is false && mapBounds.IsInRange(curr.position + Vector2Int.Right))
                         candidatePositions.Add(curr.position + Vector2Int.Right);
-                    if(rooms.ContainsKey(curr.position + Vector2Int.Down) is false)
+                    if(rooms.ContainsKey(curr.position + Vector2Int.Down) is false && mapBounds.IsInRange(curr.position + Vector2Int.Down))
                         candidatePositions.Add(curr.position + Vector2Int.Down);
-                    if(rooms.ContainsKey(curr.position + Vector2Int.Left) is false)
+                    if(rooms.ContainsKey(curr.position + Vector2Int.Left) is false && mapBounds.IsInRange(curr.position + Vector2Int.Left))
                         candidatePositions.Add(curr.position + Vector2Int.Left);
 
                     if(candidatePositions.Count is 0)

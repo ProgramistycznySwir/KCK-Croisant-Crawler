@@ -21,7 +21,7 @@ namespace Croisant_Crawler.Data
         public float DistanceTo(Vector2Int other)
             => (this - other).Magnitude;
 
-        public static implicit operator Vector2Int(Tuple<int, int> tuple)
+        public static implicit operator Vector2Int((int, int) tuple)
             => new Vector2Int(tuple.Item1, tuple.Item2);
 
         public static Vector2Int operator +(Vector2Int left, Vector2Int right)
@@ -32,5 +32,7 @@ namespace Croisant_Crawler.Data
             => left.x == right.x && left.y == right.y;
         public static bool operator !=(Vector2Int left, Vector2Int right)
             => !(left == right);
+        public static Vector2Int operator *(Vector2Int vector, float scalar)
+            => new Vector2Int((int)(vector.x * scalar), (int)(vector.y * scalar));
     }
 }

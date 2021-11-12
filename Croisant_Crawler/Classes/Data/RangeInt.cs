@@ -7,6 +7,8 @@ namespace Croisant_Crawler.Data
         public int min;
         public int max;
 
+        public int Lenght => max - min;
+
         public RangeInt(int min, int max) => (this.min, this.max) = (min, max);
         public RangeInt(int max) => (this.min, this.max) = (0, max);
 

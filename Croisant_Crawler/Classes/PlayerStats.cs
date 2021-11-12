@@ -1,6 +1,7 @@
-
+using System;
+using Croisant_Crawler.Data;
 
 public class PlayerStats : Stats
 {
-    
+    public Vector2Int position;
 }

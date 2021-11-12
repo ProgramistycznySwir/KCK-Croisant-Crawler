@@ -13,6 +13,8 @@ namespace Croisant_Crawler
 
         public readonly int distanceFromStart;
 
+        public bool IsExplored;
+
         public Room(Vector2Int position, int distanceFromStart, List<Room> connections = null)
         {
             this.position = position;
