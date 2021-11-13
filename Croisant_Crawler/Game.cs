@@ -9,19 +9,19 @@ namespace Croisant_Crawler
     {
         public static void Start()
         {
+            // Initializing screen:
             Console.Clear();
             Console.CursorVisible = false;
 
-            // Floor floor = new Floor();
-            Floor floor = new Floor((20,10), 1, 9999);
-
-            Draw_Map.DrawMap(floor, drawAll: true);
-            // Draw_Map.DrawMap(floor, drawAll: false);
+            // Initializing game data:
+            Floor floor = new Floor();
+            // Floor floor = new Floor((20,10), 1, 9999);
             PlayerStats player = new PlayerStats(floor.startRoomPos);
-            Draw_Player.DrawPlayer(player);
 
-            // floor.rooms.TryGetValue(currPos + Vector2Int.Right, out room)
-            ConsoleKey key = new();
+            // Drawing first view:
+            Map_View.ReRenderMapView(floor, player);
+
+            ConsoleKey key;
             while((key = Console.ReadKey(true).Key) is not ConsoleKey.Escape)
             {
                 var nextPos = player.position + key switch{
@@ -38,11 +38,12 @@ namespace Croisant_Crawler
                         .FirstOrDefault();
                 if(newRoom is null)
                     continue;
+                // Move player to new room.
                 player.position = newRoom.position;
                 newRoom.IsExplored = true;
                 // Draw_Map.DrawMap(floor);
-                Draw_Map.UpdateRoom(newRoom);
-                Draw_Player.DrawPlayer(player);
+                Room_View.UpdateRoom(newRoom);
+                Player_View.DrawPlayer(player);
             }
         }
     }
