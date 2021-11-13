@@ -4,7 +4,7 @@ using System.Linq;
 using Croisant_Crawler.Data;
 
 
-namespace Croisant_Crawler
+namespace Croisant_Crawler.Core
 {
     public class PlayerStats : Stats
     {
@@ -23,6 +23,7 @@ namespace Croisant_Crawler
         public PlayerStats(Vector2Int position)
             : base("Hero", 5, 5, 5)
         {
+            this.position = position;
             DEBUG_GiveBasicStuff();
         }
 

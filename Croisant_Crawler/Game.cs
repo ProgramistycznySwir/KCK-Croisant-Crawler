@@ -14,7 +14,7 @@ namespace Croisant_Crawler
             Console.CursorVisible = false;
 
             // Initializing game data:
-            Floor floor = new Floor();
+            Floor floor = new Floor((6, 6));
             // Floor floor = new Floor((20,10), 1, 9999);
             PlayerStats player = new PlayerStats(floor.startRoomPos);
 
@@ -43,7 +43,7 @@ namespace Croisant_Crawler
                 newRoom.IsExplored = true;
                 // Draw_Map.DrawMap(floor);
                 Room_View.UpdateRoom(newRoom);
-                Player_View.DrawPlayer(player);
+                Player_View.DrawPlayerOnMap(player);
             }
         }
     }

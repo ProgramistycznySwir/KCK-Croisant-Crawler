@@ -1,6 +1,6 @@
 using System;
 
-namespace Croisant_Crawler
+namespace Croisant_Crawler.Core
 {
     public enum ItemType { Helm, Shirt, Pants, Accesory }
 

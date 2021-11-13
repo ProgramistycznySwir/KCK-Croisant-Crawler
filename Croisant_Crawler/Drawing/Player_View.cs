@@ -1,4 +1,5 @@
 using System;
+using Croisant_Crawler.Core;
 using Croisant_Crawler.Data;
 
 namespace Croisant_Crawler.Drawing
@@ -13,11 +14,16 @@ namespace Croisant_Crawler.Drawing
 
         static Vector2Int lastPlayerPos;
 
-        public static void DrawPlayer(PlayerStats player)
+        public static void DrawPlayerOnMap(PlayerStats player)
         {
             Draw.At(lastPlayerPos.Scale(RoomSize) + MapCorner + Vector2Int.One, " ");
             Draw.At(player.position.Scale(RoomSize) + MapCorner + Vector2Int.One, PlayerShape, PlayerColor);
             lastPlayerPos = player.position;
+        }
+
+        public static void DrawPlayerStats(PlayerStats player, Vector2Int corner)
+        {
+            Draw.At(corner + Vector2Int.One, "~~ Hero's Stats: ~~");
         }
     }
 }

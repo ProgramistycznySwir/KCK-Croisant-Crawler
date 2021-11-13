@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Croisant_Crawler.Data;
 
-namespace Croisant_Crawler
+namespace Croisant_Crawler.Core
 {
     public class Floor
     {
@@ -23,21 +23,24 @@ namespace Croisant_Crawler
         //     => rooms[pos.x, pos.y];
         // void SetRoom(Vector2Int pos, Room room)
         //     => rooms[pos.x, pos.y] = room;
-        void CreateRoom(Vector2Int pos, int distanceFromStart, List<Room> connections = null)
+        void CreateRoom(Vector2Int pos, int distanceFromStart, RoomType? overrideType = null, List<Room> connections = null)
         {
             // SetRoom(pos, new Room(pos, connections));
-            rooms.Add(pos, new Room(pos, distanceFromStart, connections));
+            rooms.Add(pos, new Room(pos, distanceFromStart, overrideType, connections));
         }
 
-        public Vector2Int startRoomPos;
+        public readonly Vector2Int startRoomPos;
 
         public Floor(Vector2Int mapSize = default, int level = 1, int roomCount = 24)
         {
             // Normalizing.
+            mapSize = mapSize == default ? Vector2Int.One * 6 : mapSize;
             mapSize -= Vector2Int.One;
-            this.mapBounds = new RectRangeInt(mapSize == default ? Vector2Int.One * 6 : mapSize);
+            this.mapBounds = new RectRangeInt(mapSize);
             this.level = level;
             this.roomCount = Math.Min(roomCount, (mapSize.x * mapSize.y));
+
+            startRoomPos = mapBounds.RandomVector2Int;
 
             // rooms = new Room[mapSize.x, mapSize.y];
             // roomList = new List<Room>(roomCount);
@@ -46,8 +49,8 @@ namespace Croisant_Crawler
 
         void GenerateRooms()
         {
-            startRoomPos = mapBounds.RandomVector2Int;
-            CreateRoom(startRoomPos, 0);
+            // Kickstart room placement:
+            CreateRoom(startRoomPos, 0, overrideType: RoomType.StartRoom);
             rooms[startRoomPos].IsExplored = true;
 
             // Room placement:
@@ -82,7 +85,7 @@ namespace Croisant_Crawler
 
                 // Get random possible adjacent position
                 Vector2Int newRoomPos = candidatePositions[MyMath.rng.Next(candidatePositions.Count)];
-                CreateRoom(newRoomPos, curr.distanceFromStart + 1, new List<Room>{curr});
+                CreateRoom(newRoomPos, curr.distanceFromStart + 1, connections: new List<Room>{curr});
                 curr.connections.Add(rooms[newRoomPos]);
             }
         }

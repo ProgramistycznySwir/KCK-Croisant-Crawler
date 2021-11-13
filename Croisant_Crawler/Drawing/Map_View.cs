@@ -1,4 +1,5 @@
 using System;
+using Croisant_Crawler.Core;
 using Croisant_Crawler.Data;
 
 namespace Croisant_Crawler.Drawing
@@ -12,7 +13,7 @@ namespace Croisant_Crawler.Drawing
         {
             Console.Clear();
             Floor_View.DrawMap(floor, drawAll: false);
-            Player_View.DrawPlayer(player);
+            Player_View.DrawPlayerOnMap(player);
         }
     }
 }

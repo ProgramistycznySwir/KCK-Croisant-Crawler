@@ -5,11 +5,13 @@ namespace Croisant_Crawler.Drawing
 {
     public static class Draw
     {
-        public static void At(Vector2Int pos, string word)
+        public static void At(int x, int y, string word)
         {
-            Console.SetCursorPosition(pos.x, pos.y);
+            Console.SetCursorPosition(x, y);
             Console.Write(word);
         }
+        public static void At(Vector2Int pos, string word)
+            => At(pos.x, pos.y, word);
         public static void At(Vector2Int pos, string word, ConsoleColor color)
         {
             Console.ForegroundColor = color;
@@ -29,18 +31,20 @@ namespace Croisant_Crawler.Drawing
             Draw.At(pos+Vector2Int.Up,   "│  │");
             Draw.At(pos+Vector2Int.Up*2, "└──┘");
         }
-        public static void Rect(RectRangeInt rect)
+        public static void Frame(RectRangeInt rect)
         {
             // Top and bottom frame:
             Draw.At((rect.x.min, rect.y.min), new string('─', rect.x.Lenght));
             Draw.At((rect.x.min, rect.y.max), new string('─', rect.x.Lenght));
 
-            int x, y;
+            int y = rect.y.min;
             // TODO: Finish.
-            // while(x < rect.x.max)
-            // {
-                
-            // }
+            while(y < rect.y.max)
+            {
+                Draw.At((rect.x.min, y), "│");
+                Draw.At((rect.x.max, y), "│");
+                y++;
+            }
         }
     }
 }
