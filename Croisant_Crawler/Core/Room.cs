@@ -28,7 +28,8 @@ namespace Croisant_Crawler.Core
             this.connections = connections ?? new List<Room>(4);
             this.distanceFromStart = distanceFromStart;
 
-            IsDangerous = MyMath.RandomFloat < EnemyChance;
+            if(distanceFromStart > SafeZoneDistance)
+                IsDangerous = MyMath.RandomFloat < EnemyChance;
 
             if(overrideType is not null)
                 type = overrideType.Value;

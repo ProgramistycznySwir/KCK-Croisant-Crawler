@@ -61,7 +61,7 @@ namespace Croisant_Crawler.Core
                 // List<Room> candidates = rooms.Values.Where(room => room.connections.IsFull is false).ToList();
                 while(true)
                 {
-                    // TODO: introduce cache'ing...
+                    // TODO LOW:  introduce cache'ing...
                     // Pick random room with not all connections full:
                     do{
                         curr = rooms.Values.Skip(MyMath.rng.Next(i - 1)).Take(1).First();

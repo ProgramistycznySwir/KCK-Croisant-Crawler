@@ -4,9 +4,14 @@ namespace Croisant_Crawler.Data
     {
         public RangeInt x, y;
 
+        public Vector2Int MinCorner => (x.min, y.min);
+        public Vector2Int MaxCorner => (x.max, y.max);
+
         public RectRangeInt(RangeInt x, RangeInt y) => (this.x, this.y) = (x, y);
         public RectRangeInt(RangeInt squareRange) => (this.x, this.y) = (squareRange, squareRange);
-        public RectRangeInt(Vector2Int vector) => (this.x, this.y) = (new RangeInt(vector.x), new RangeInt(vector.y));
+        public RectRangeInt(Vector2Int maxCorner) => (this.x, this.y) = (new RangeInt(maxCorner.x), new RangeInt(maxCorner.y));
+        public RectRangeInt(Vector2Int minCorner, Vector2Int maxCorner)
+            => (this.x, this.y) = (new RangeInt(minCorner.x, maxCorner.x), new RangeInt(minCorner.y, maxCorner.y));
         public RectRangeInt(int x, int y) => (this.x, this.y) = (new RangeInt(x), new RangeInt(y));
         // public RectRangeInt(int max) => (this.min, this.max) = (0, max);
 

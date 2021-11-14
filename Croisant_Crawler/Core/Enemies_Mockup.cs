@@ -29,18 +29,17 @@ namespace Croisant_Crawler.Core
                 def: (int)(2 + (0.5 * level)),
                 arm: (int)(2 + (1 * level))
             );
-
-         public static Stats Spider(int level)
-             => new Stats(
+        public static Stats Spider(int level)
+            => new Stats(
                 name: "Spider",
                 vit: (int)(2 + (1.5 * level)),
                 str: (int)(1 + (1 * level)),
                 agi: (int)(6 + (3 * level)),
                 def: (int)(1 + (1 * level)),
                 arm: 0
-             );
-         public static Stats Bandit(int level)
-             => new Stats(
+            );
+        public static Stats Bandit(int level)
+            => new Stats(
                 name: "Bandit",
                 vit: (int)(4 + (2 * level)),
                 str: (int)(3 + (1 * level)),
@@ -49,8 +48,8 @@ namespace Croisant_Crawler.Core
                 arm: (int)(1 + (1 * level))
             );
 
-         public static Stats Skeleton(int level)
-             => new Stats(
+        public static Stats Skeleton(int level)
+            => new Stats(
                 name: "Skeleton",
                 vit: (int)(2 + (2 * level)),
                 str: (int)(5 + (2 * level)),
@@ -59,8 +58,8 @@ namespace Croisant_Crawler.Core
                 arm: (int)(2 + (2 * level))
             );
 
-         public static Stats Slime(int level)
-             => new Stats(
+        public static Stats Slime(int level)
+            => new Stats(
                 name: "Slime",
                 vit: (int)(5 + (3 * level)),
                 str: (int)(2 + (1 * level)),
@@ -68,8 +67,6 @@ namespace Croisant_Crawler.Core
                 def: (int)(2 + (1.5 * level)),
                 arm: (int)(1 + (1.5 * level))
             );
-
-
         // {
         //     Stats stats = new();
         //     stats.Name = "Goblin";

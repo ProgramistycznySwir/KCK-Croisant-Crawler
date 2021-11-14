@@ -22,6 +22,8 @@ namespace Croisant_Crawler.Data
             => (this - other).Magnitude;
         public Vector2Int Scale(Vector2Int scalar)
             => new Vector2Int(x * scalar.x, y * scalar.y);
+        public Vector2Int Scale(int x, int y)
+            => new Vector2Int(this.x * x, this.y * y);
 
         public static implicit operator Vector2Int((int, int) tuple)
             => new Vector2Int(tuple.Item1, tuple.Item2);
