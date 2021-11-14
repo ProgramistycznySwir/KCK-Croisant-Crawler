@@ -23,18 +23,24 @@ namespace Croisant_Crawler.Drawing
         public void SubscribeToStatChanges(Stats stats)
         {
             stats.HP_OnChange  += this.UpdateHP;
+            stats.IsDead_OnChange  += this.UpdateName;
         }
 
         public void DrawEnemy()
         {
-            Draw.At(Corner + (0, 0), $"{Stats.Name} <{Stats.Lvl}>:");
+            UpdateName(Stats);
             UpdateHP(Stats);
         }
 
         public void UpdateHP(Stats stats)
         {
-            Draw.Over(Corner + (2, 1), Width - 1, $"HP: {stats.HP.value}/{stats.HP.range.max}");
+            Draw.Over(Corner + (2, 1), Width - 2, $"HP: {stats.HP.value}/{stats.HP.range.max}");
             Draw.Bar(Corner + (2, 2), lenght: 10, value: stats.HP, color: ConsoleColor.Red, addPercent: true);
+        }
+
+        public void UpdateName(Stats stats)
+        {
+            Draw.Over(Corner + (2, 0), Width - 2, $"{Stats.Name} <{Stats.Lvl}>: {(stats.IsDead ? "(Dead)" : "")}");
         }
     }
 }

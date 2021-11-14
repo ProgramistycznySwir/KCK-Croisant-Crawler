@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 using Croisant_Crawler.Data;
 
@@ -33,7 +34,7 @@ namespace Croisant_Crawler.Drawing
         public static void Over(Vector2Int pos, int space, string word)
         {
             if(word.Length > space)
-                throw new OverflowException($"Text \"{word}\" is too long for it's space: {space}");
+                word = word.Take(space - 3) + "...";
             At(pos, new string(' ', space));
             At(pos, word);
         }

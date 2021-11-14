@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Croisant_Crawler.Data;
 
 namespace Croisant_Crawler.Drawing

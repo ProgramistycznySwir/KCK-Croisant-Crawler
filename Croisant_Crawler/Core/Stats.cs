@@ -24,6 +24,9 @@ namespace Croisant_Crawler.Core
         public virtual int Arm { get; set; }
         public float DamageReduction => Arm / (Arm + 100f);
 
+        public bool IsDead { get; protected set; }
+        public Action<Stats> IsDead_OnChange;
+
         RangeInt DamageRange;
         public int GetDamage()
             => DamageRange.RandomInt;
@@ -38,17 +41,24 @@ namespace Croisant_Crawler.Core
             RecalculateDamageRange();
         }
 
-        public virtual void TakeDamage(int damage)
+        public virtual int TakeDamage(int damage)
         {
-            _HP.value -= CalculateDamageReceived(damage);
+            int receivedDamage = CalculateDamageReceived(damage);
+            _HP.value -= receivedDamage;
             if(_HP.IsMin)
                 Die();
-            HP_OnChange(this);
+            if(HP_OnChange is not null)
+                HP_OnChange(this);
+
+            return receivedDamage;
         }
 
-        private void Die()
+        protected virtual void Die()
         {
-            throw new NotImplementedException("Props are not meant to die for now...");
+            IsDead = true;
+            RunSummary.IncKilledEnemies();
+            if(IsDead_OnChange is not null)
+                IsDead_OnChange(this);
         }
 
         protected virtual void RecalculateHP(bool firstCalculation = false)
@@ -71,6 +81,11 @@ namespace Croisant_Crawler.Core
         public int CalculateDamageReceived(int baseDamage)
         {
             return (int)Math.Max(baseDamage * (1-DamageReduction) - Def, 1);
+        }
+
+        public static int ExperienceFormula(PlayerStats player, Stats enemy)
+        {
+            return 25 + Math.Min((enemy.Lvl - player.Lvl) * 10, 0);
         }
     }
 }

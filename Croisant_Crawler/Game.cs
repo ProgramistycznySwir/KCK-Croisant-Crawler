@@ -49,15 +49,21 @@ namespace Croisant_Crawler
                     continue;
                 // Move player to new room:
                 player.position = newRoom.position;
+                if(newRoom.IsExplored is false)
+                    RunSummary.IncExploredRooms();
                 newRoom.IsExplored = true;
                 // DEBUG.
-                player.TakeDamage(5);
-                player.ReceiveExp(45);
-                
+                // player.TakeDamage(5);
+                // player.ReceiveExp(45);
                 if(newRoom.IsDangerous)
                 {
                     Map_View.SetActive(false);
-                    Fight_Game.StartFight(player, newRoom);
+                    FightResult fightResult = Fight_Game.StartFight(player, newRoom);
+                    if(fightResult is FightResult.TPK)
+                    {
+                        Summary(player);
+                        return;
+                    }
                     Map_View.ReRenderMapView(floor, player);
                 }
 
@@ -65,6 +71,15 @@ namespace Croisant_Crawler
                 Room_View.UpdateRoom(newRoom);
                 Player_View.UpdatePlayerOnMap(player);
             }
+        }
+
+        public static void Summary(PlayerStats player)
+        {
+            Console.Clear();
+            Console.WriteLine("Run summary: ");
+            Console.WriteLine($"Explored rooms: {RunSummary.ExploredRooms}");
+            Console.WriteLine($"Defeated enemies: {RunSummary.DefeatedEnemies}");
+            Console.WriteLine($"Highest level: { player.Lvl }");
         }
     }
 }
