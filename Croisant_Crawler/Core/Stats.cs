@@ -11,6 +11,7 @@ namespace Croisant_Crawler.Core
 
         protected ValueInRangeInt _HP;
         public ValueInRangeInt HP => _HP;
+        public Action<Stats> HP_OnChange;
         // public int HP { get; set; }
         // public int MaxHP { get; set; }
 

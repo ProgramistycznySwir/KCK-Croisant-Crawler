@@ -21,7 +21,7 @@ namespace Croisant_Crawler.Drawing
             CurrentMapViewBounds = new RectRangeInt(floor.mapBounds.MaxCorner.Scale(roomSize + Vector2Int.One) - Vector2Int.Up);
 
             playerStats_View ??= new PlayerStats_View();
-            playerStats_View.PlayerStatsCorner = playerStatsCorner;
+            playerStats_View.SetCorner(playerStatsCorner);
             playerStats_View.SubscribeToStatChanges(player);
         }
 

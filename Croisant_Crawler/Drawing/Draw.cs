@@ -30,6 +30,14 @@ namespace Croisant_Crawler.Drawing
             Console.ResetColor();
         }
 
+        public static void Over(Vector2Int pos, int space, string word)
+        {
+            if(word.Length > space)
+                throw new OverflowException($"Text \"{word}\" is too long for it's space: {space}");
+            At(pos, new string(' ', space));
+            At(pos, word);
+        }
+
 
         public static void SmallRect(Vector2Int pos)
         {
@@ -83,13 +91,13 @@ namespace Croisant_Crawler.Drawing
             int value_normalized = (int)(lenght * shapes.Length * value.Percent);
             while(value_normalized > 0)
             {
-                bob.Append(shapes[range.Clamp(value_normalized)]);
+                bob.Append(shapes[range.Clamp(value_normalized -1)]);
                 value_normalized -= shapes.Length;
             }
             Draw.At(position, "▐");
             Draw.At(position + (1, 0), bob.ToString(), color);
             Draw.At(position + (lenght + 1, 0), "▌");
-            Draw.At(position + (lenght + 2, 0), $"{(int)(value.Percent * 100)}%");
+            Draw.At(position + (lenght + 2, 0), $"{(int)(value.Percent * 100)}%  ");
         }
     }
 }

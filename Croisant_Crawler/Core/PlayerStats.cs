@@ -10,7 +10,7 @@ namespace Croisant_Crawler.Core
     {
         public Vector2Int position;
 
-        public Action<PlayerStats> HP_OnChange;
+        // public Action<PlayerStats> HP_OnChange;
 
         public int Vit_base { get => base.Vit; set => base.Vit = value; }
         public int Vit_eq { get; private set; }

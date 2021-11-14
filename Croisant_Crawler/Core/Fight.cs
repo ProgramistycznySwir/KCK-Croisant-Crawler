@@ -14,7 +14,7 @@ namespace Croisant_Crawler.Core
 
         void GenerateFight(int distanceFromStart)
         {
-            // Implement propper enemies generation.
+            // TODO MID: Implement propper enemies generation.
             enemies.Add(Enemies_Mockup.Slime(distanceFromStart / 2));
         }
     }

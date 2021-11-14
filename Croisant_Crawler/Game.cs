@@ -30,7 +30,7 @@ namespace Croisant_Crawler
             // Drawing first view.
             Map_View.ReRenderMapView(floor, player, drawAll: false);
 
-            /// Map movement loop:
+            /// Game loop:
             ConsoleKey key;
             while((key = Console.ReadKey(true).Key) is not ConsoleKey.Escape)
             {
@@ -51,19 +51,16 @@ namespace Croisant_Crawler
                 // Move player to new room:
                 player.position = newRoom.position;
                 newRoom.IsExplored = true;
+                // DEBUG.
+                player.TakeDamage(5);
                 
                 if(newRoom.IsDangerous)
-                    StartFight();
+                    Fight_Game.StartFight(player, newRoom);
 
                 // Render changes:
                 Room_View.UpdateRoom(newRoom);
                 Player_View.UpdatePlayerOnMap(player);
             }
-        }
-
-        private static void StartFight()
-        {
-            throw new NotImplementedException();
         }
     }
 }
