@@ -29,6 +29,8 @@ namespace Croisant_Crawler
             // Drawing first view.
             Map_View.ReRenderMapView(floor, player, drawAll: false);
 
+            Enemies_List.GenerateEnemies();
+
             /// Game loop:
             ConsoleKey key;
             while((key = Console.ReadKey(true).Key) is not ConsoleKey.Escape)
