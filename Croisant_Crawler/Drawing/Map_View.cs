@@ -14,28 +14,28 @@ namespace Croisant_Crawler.Drawing
 
         public static RectRangeInt CurrentMapViewBounds { get; private set; }
 
+        static PlayerStats_View playerStats_View;
+
+        public static void Init(PlayerStats player, Floor floor)
+        {
+            CurrentMapViewBounds = new RectRangeInt(floor.mapBounds.MaxCorner.Scale(roomSize + Vector2Int.One) - Vector2Int.Up);
+
+            playerStats_View ??= new PlayerStats_View();
+            playerStats_View.PlayerStatsCorner = playerStatsCorner;
+            playerStats_View.SubscribeToStatChanges(player);
+        }
+
         public static void ReRenderMapView(Floor floor, PlayerStats player, bool drawAll = false)
         {
             IsActive = true;
             // Update properties:
-            CurrentMapViewBounds = new RectRangeInt(floor.mapBounds.MaxCorner.Scale(roomSize + Vector2Int.One) - Vector2Int.Up);
 
             // Render:
             Console.Clear();
             Draw.Frame(CurrentMapViewBounds);
             Floor_View.DrawMap(floor, drawAll: drawAll);
             Player_View.UpdatePlayerOnMap(player);
-            Player_View.DrawPlayerStats(player);
-        }
-
-        public static void SubscribeToStatChanges(PlayerStats player)
-        {
-            player.HP_OnChange += Player_View.UpdateHP;
-            player.Vit_OnChange += Player_View.UpdateVit;
-            player.Str_OnChange += Player_View.UpdateStr;
-            player.Agi_OnChange += Player_View.UpdateAgi;
-            player.Def_OnChange += Player_View.UpdateDef;
-            player.Arm_OnChange += Player_View.UpdateArm;
+            playerStats_View.DrawPlayerStats(player);
         }
     }
 }

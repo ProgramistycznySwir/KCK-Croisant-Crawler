@@ -7,14 +7,15 @@ namespace Croisant_Crawler.Core
         public const int MaxEnemiesCount = 4;
         public List<Stats> enemies;
 
-        public Fight()
+        public Fight(int distanceFromStart)
         {
-            GenerateFight();
+            GenerateFight(distanceFromStart);
         }
 
-        void GenerateFight()
+        void GenerateFight(int distanceFromStart)
         {
-            
+            // Implement propper enemies generation.
+            enemies.Add(Enemies_Mockup.Slime(distanceFromStart / 2));
         }
     }
 }

@@ -31,6 +31,18 @@ namespace Croisant_Crawler.Core
             RecalculateHP(true);
         }
 
+        public virtual void TakeDamage(int damage)
+        {
+            _HP.value -= CalculateDamage(damage);
+            if(_HP.IsMin)
+                Die();
+        }
+
+        private void Die()
+        {
+            throw new NotImplementedException("Props are not meant to die for now...");
+        }
+
         protected virtual void RecalculateHP(bool firstCalculation = false)
         {
             float hpPercent = _HP.Percent;
@@ -39,8 +51,6 @@ namespace Croisant_Crawler.Core
 
             if(firstCalculation)
                 _HP.value = _HP.range.max;
-
-            // Invoke some ui update delegate here...
         }
 
         public int CalculateDamage(int baseDamage)

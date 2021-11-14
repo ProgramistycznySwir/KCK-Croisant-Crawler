@@ -17,16 +17,16 @@ namespace Croisant_Crawler
             Console.Clear();
             Console.CursorVisible = false;
 
+            // Initializing player data.
             PlayerStats player = new PlayerStats();
-            // Subscribe to changes.
-            Map_View.SubscribeToStatChanges(player);
 
-
-            // Initializing level data:
+            // Generating level data.
             Floor floor = new Floor((6, 6));
-            // Place player in level
+            // Place player in level.
             player.position = floor.startRoomPos;
 
+            // Init Map_View.
+            Map_View.Init(player: player, floor: floor);
             // Drawing first view.
             Map_View.ReRenderMapView(floor, player, drawAll: false);
 

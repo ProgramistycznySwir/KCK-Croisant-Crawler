@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Croisant_Crawler.Data;
 
 namespace Croisant_Crawler.Drawing
@@ -71,6 +72,24 @@ namespace Croisant_Crawler.Drawing
 
             // Draw corner:
             Draw.At((rect.x.min, rect.y.min), "┌");
+        }
+
+        public static void Bar(Vector2Int position, int lenght, ValueInRangeInt value, ConsoleColor color, bool addPercent = false)
+        {
+            string shapes = " ░▒▓█";
+            RangeInt range = new RangeInt(0, shapes.Length - 1);
+
+            StringBuilder bob = new StringBuilder();
+            int value_normalized = (int)(lenght * shapes.Length * value.Percent);
+            while(value_normalized > 0)
+            {
+                bob.Append(shapes[range.Clamp(value_normalized)]);
+                value_normalized -= shapes.Length;
+            }
+            Draw.At(position, "▐");
+            Draw.At(position + (1, 0), bob.ToString(), color);
+            Draw.At(position + (lenght + 1, 0), "▌");
+            Draw.At(position + (lenght + 2, 0), $"{(int)(value.Percent * 100)}%");
         }
     }
 }
