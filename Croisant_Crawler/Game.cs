@@ -55,7 +55,11 @@ namespace Croisant_Crawler
                 player.TakeDamage(5);
                 
                 if(newRoom.IsDangerous)
+                {
+                    Map_View.SetActive(false);
                     Fight_Game.StartFight(player, newRoom);
+                    Map_View.ReRenderMapView(floor, player);
+                }
 
                 // Render changes:
                 Room_View.UpdateRoom(newRoom);

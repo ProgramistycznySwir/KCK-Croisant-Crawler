@@ -97,7 +97,7 @@ namespace Croisant_Crawler.Drawing
             Draw.At(position, "▐");
             Draw.At(position + (1, 0), bob.ToString(), color);
             Draw.At(position + (lenght + 1, 0), "▌");
-            Draw.At(position + (lenght + 2, 0), $"{(int)(value.Percent * 100)}%  ");
+            Draw.Over(position + (lenght + 2, 0), 4, $"{(int)(value.Percent * 100)}%");
         }
     }
 }

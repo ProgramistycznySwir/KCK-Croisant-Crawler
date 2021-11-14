@@ -11,9 +11,8 @@ namespace Croisant_Crawler.Core
 
         protected ValueInRangeInt _HP;
         public ValueInRangeInt HP => _HP;
+        // I'm leaving this as Action<Stats> soo if I need it later.
         public Action<Stats> HP_OnChange;
-        // public int HP { get; set; }
-        // public int MaxHP { get; set; }
 
         public virtual int Vit { get; set; } // R
         public virtual int Str { get; set; } // Y
@@ -53,7 +52,8 @@ namespace Croisant_Crawler.Core
 
             if(firstCalculation)
                 _HP.value = _HP.range.max;
-            HP_OnChange(this);
+            if(HP_OnChange is not null)
+                HP_OnChange(this);
         }
 
         public int CalculateDamage(int baseDamage)

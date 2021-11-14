@@ -20,14 +20,13 @@ namespace Croisant_Crawler.Drawing
         {
             CurrentMapViewBounds = new RectRangeInt(floor.mapBounds.MaxCorner.Scale(roomSize + Vector2Int.One) - Vector2Int.Up);
 
-            playerStats_View ??= new PlayerStats_View();
-            playerStats_View.SetCorner(playerStatsCorner);
+            playerStats_View ??= new PlayerStats_View(playerStatsCorner);
             playerStats_View.SubscribeToStatChanges(player);
         }
 
         public static void ReRenderMapView(Floor floor, PlayerStats player, bool drawAll = false)
         {
-            IsActive = true;
+            SetActive(true);
             // Update properties:
 
             // Render:
@@ -36,6 +35,12 @@ namespace Croisant_Crawler.Drawing
             Floor_View.DrawMap(floor, drawAll: drawAll);
             Player_View.UpdatePlayerOnMap(player);
             playerStats_View.DrawPlayerStats(player);
+        }
+
+        internal static void SetActive(bool active)
+        {
+            IsActive = active;
+            playerStats_View.IsActive = active;
         }
     }
 }

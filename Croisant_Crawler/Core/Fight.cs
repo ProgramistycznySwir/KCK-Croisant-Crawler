@@ -5,7 +5,7 @@ namespace Croisant_Crawler.Core
     public class Fight
     {
         public const int MaxEnemiesCount = 4;
-        public List<Stats> enemies;
+        public List<Stats> enemies = new();
 
         public Fight(int distanceFromStart)
         {
