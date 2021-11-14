@@ -24,6 +24,10 @@ namespace Croisant_Crawler.Core
         public virtual int Arm { get; set; }
         public float DamageReduction => Arm / (Arm + 100f);
 
+        RangeInt DamageRange;
+        public int GetDamage()
+            => DamageRange.RandomInt;
+
         public Stats(string name, int vit, int str, int agi, int def = 0, int arm = 0, int? lvl = null)
         {
             (Name, Vit, Str, Agi, Def, Arm) = (name, vit, str, agi, def, arm);
@@ -31,11 +35,12 @@ namespace Croisant_Crawler.Core
                 Lvl = lvl.Value;
 
             RecalculateHP(true);
+            RecalculateDamageRange();
         }
 
         public virtual void TakeDamage(int damage)
         {
-            _HP.value -= CalculateDamage(damage);
+            _HP.value -= CalculateDamageReceived(damage);
             if(_HP.IsMin)
                 Die();
             HP_OnChange(this);
@@ -58,7 +63,12 @@ namespace Croisant_Crawler.Core
                 HP_OnChange(this);
         }
 
-        public int CalculateDamage(int baseDamage)
+        protected virtual void RecalculateDamageRange()
+        {
+            DamageRange = new RangeInt(Str * 2, Str * 3);
+        }
+
+        public int CalculateDamageReceived(int baseDamage)
         {
             return (int)Math.Max(baseDamage * (1-DamageReduction) - Def, 1);
         }

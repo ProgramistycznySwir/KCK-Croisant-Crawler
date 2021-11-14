@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Croisant_Crawler.Core;
 using Croisant_Crawler.Data;
@@ -28,6 +29,12 @@ namespace Croisant_Crawler.Drawing
                 view.DrawEnemy();
             
             EnemySelector = new Selector(EnemyViewCorner, spacing: 3, itemCount: EnemyViews.Count, shape: "->", isReactingToNumberInput: false);
+        }
+
+        public void DisplayPrompt(string actionPrompt)
+        {
+            // At bottom of screen.
+            Draw.Over((0, Console.BufferHeight - 10), Console.BufferWidth, actionPrompt);
         }
     }
 }

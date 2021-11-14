@@ -88,10 +88,10 @@ namespace Croisant_Crawler.Drawing
             RangeInt range = new RangeInt(0, shapes.Length - 1);
 
             StringBuilder bob = new StringBuilder();
-            int value_normalized = (int)(lenght * shapes.Length * value.Percent);
-            while(value_normalized > 0)
+            int value_normalized = (int)(lenght * shapes.Length * value.Percent);            
+            for(int i = 0; i < lenght; i++)
             {
-                bob.Append(shapes[range.Clamp(value_normalized -1)]);
+                bob.Append(shapes[range.Clamp(value_normalized - 1)]);
                 value_normalized -= shapes.Length;
             }
             Draw.At(position, "▐");

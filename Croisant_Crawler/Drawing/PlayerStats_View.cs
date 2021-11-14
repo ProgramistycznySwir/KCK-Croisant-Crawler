@@ -83,7 +83,7 @@ namespace Croisant_Crawler.Drawing
             // Draw.HalfFrame(PlayerViewRect);
             Draw.Frame(ViewRect);
 
-            Draw.At(Corner + (1, 1), " Hero's Stats:");
+            Draw.At(Corner + (1, 1), $" {player.Name}'s Stats:");
             UpdateExp(player);
             UpdateHP(player);
             UpdateVit(player);
