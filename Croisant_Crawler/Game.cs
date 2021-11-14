@@ -3,9 +3,6 @@ using System.Linq;
 using Croisant_Crawler.Core;
 using Croisant_Crawler.Data;
 using Croisant_Crawler.Drawing;
-using System.Text.Json;
-using System.IO;
-using System.Text;
 
 namespace Croisant_Crawler
 {
@@ -32,6 +29,8 @@ namespace Croisant_Crawler
             Map_View.Init(player: player, floor: floor);
             // Drawing first view.
             Map_View.ReRenderMapView(floor, player, drawAll: false);
+
+            Enemies_List.GenerateEnemies();
 
             /// Game loop:
             ConsoleKey key;

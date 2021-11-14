@@ -8,7 +8,7 @@ namespace Croisant_Crawler.Core
 {
     class Stats_Prototype
     {
-        public int Level { get; set; }
+        //public int Level { get; set; }
         public string Name { get; protected set; }
 
         public virtual int Base_Vit { get; set; }
