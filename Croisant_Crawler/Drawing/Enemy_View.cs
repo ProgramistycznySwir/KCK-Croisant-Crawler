@@ -40,7 +40,7 @@ namespace Croisant_Crawler.Drawing
 
         public void UpdateName(Stats stats)
         {
-            Draw.Over(Corner + (2, 0), Width - 2, $"{Stats.Name} <{Stats.Lvl}>: {(stats.IsDead ? "(Dead)" : "")}");
+            Draw.Over(Corner + (1, 0), Width - 2, $"{Stats.Name} <{Stats.Lvl}>: {(stats.IsDead ? "(Dead)" : "")}");
         }
     }
 }

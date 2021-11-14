@@ -18,7 +18,7 @@ namespace Croisant_Crawler
             Fight fight = new Fight(room.distanceFromStart);
 
             Fight_View view = new(player, fight);
-            view.DisplayPrompt("Fight has started press [any] key if you're ready.");
+            view.DisplayPrompt("Fight has started press [enter] key if you're ready.");
             Wait();
 
             // Fight loop:
@@ -29,16 +29,17 @@ namespace Croisant_Crawler
 
                 // view.DisplayPrompt("Choose action, accept with [D]");
                 // view.DisplayActions(player);
-                view.DisplayPrompt("For now you can only attack, proceed with [any] key.");
+                view.DisplayPrompt("For now you can only attack, proceed with [enter] key.");
 
                 view.DisplayPrompt("Choose target, accept with [D], back off action with [A].");
-                goto_ChooseAgain:
+                goto_ChooseTargetAgain:
+                view.EnemySelector.SetActive(true);
                 while((key = TakeInput()) is not ConsoleKey.D or ConsoleKey.A)
-                    view.EnemySelector.SetActive(true).UpdateCursor(key);
+                    view.EnemySelector.UpdateCursor(key);
                 int selectedTargetIndex = view.EnemySelector.CursorIndex;
                 Stats selectedTarget = fight.enemies[selectedTargetIndex];
                 if(selectedTarget.IsDead)
-                    goto goto_ChooseAgain;
+                    goto goto_ChooseTargetAgain;
                 view.EnemySelector.SetActive(false);
 
                 // Deal damage to enemy:
@@ -69,7 +70,7 @@ namespace Croisant_Crawler
         {
             view.DelimitTurn(0);
             view.Log("Hero has defeated all enemies.");
-            view.DisplayPrompt("You've won, press [any] key to continue adventure.");
+            view.DisplayPrompt("You've won, press [enter] key to continue adventure.");
             return FightResult.Victory;
         }
 
@@ -77,7 +78,7 @@ namespace Croisant_Crawler
         {
             view.DelimitTurn(0);
             view.Log("Hero has fallen...");
-            view.DisplayPrompt("You've lost, game is over, press [any] to continue...");
+            view.DisplayPrompt("You've lost, game is over, press [enter] to continue...");
             Wait();
             return FightResult.TPK;
         }
@@ -92,7 +93,9 @@ namespace Croisant_Crawler
             => $"Hero has leveled up.";
 
         public static void Wait()
-            => Console.ReadKey(true);
+        {
+            while(Console.ReadKey(true).Key is not ConsoleKey.Enter);
+        }
         public static ConsoleKey TakeInput()
         {
             ConsoleKey key = Console.ReadKey(true).Key;

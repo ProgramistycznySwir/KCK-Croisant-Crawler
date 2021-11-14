@@ -6,7 +6,7 @@ namespace Croisant_Crawler.Core
 {
     public class Room
     {
-        public Vector2Int position { get; }        
+        public Vector2Int position { get; }
         // Whether this room has connection with room { up, right, down, left }.
         public List<Room> connections;
 

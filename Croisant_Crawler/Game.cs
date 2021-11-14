@@ -57,6 +57,9 @@ namespace Croisant_Crawler
                 // player.ReceiveExp(45);
                 if(newRoom.IsDangerous)
                 {
+                    Map_View.AlertPlayer(player, "[ENTER]");
+                    Wait();
+
                     Map_View.SetActive(false);
                     FightResult fightResult = Fight_Game.StartFight(player, newRoom);
                     if(fightResult is FightResult.TPK)
@@ -64,6 +67,7 @@ namespace Croisant_Crawler
                         Summary(player);
                         return;
                     }
+                    newRoom.IsDangerous = false;
                     Map_View.ReRenderMapView(floor, player);
                 }
 
@@ -80,6 +84,11 @@ namespace Croisant_Crawler
             Console.WriteLine($"Explored rooms: {RunSummary.ExploredRooms}");
             Console.WriteLine($"Defeated enemies: {RunSummary.DefeatedEnemies}");
             Console.WriteLine($"Highest level: { player.Lvl }");
+        }
+
+        public static void Wait()
+        {
+            while(Console.ReadKey(true).Key is not ConsoleKey.Enter);
         }
     }
 }

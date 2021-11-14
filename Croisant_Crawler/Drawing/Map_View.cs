@@ -42,5 +42,10 @@ namespace Croisant_Crawler.Drawing
             IsActive = active;
             playerStats_View.IsActive = active;
         }
+
+        public static void AlertPlayer(PlayerStats player, string alertMessage)
+        {
+            Draw.At(player.position.Scale(roomSize) + mapCorner + Vector2Int.One, alertMessage);
+        }
     }
 }

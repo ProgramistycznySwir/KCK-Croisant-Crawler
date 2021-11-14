@@ -49,7 +49,7 @@ namespace Croisant_Crawler.Core
         public List<Item> accesories = new(4);
 
         public PlayerStats()
-            : base("Hero", 5, 5, 5, lvl: 1)
+            : base("Hero", 10, 10, 10, lvl: 1)
         {
             DEBUG_GiveBasicStuff();
         }
@@ -57,7 +57,7 @@ namespace Croisant_Crawler.Core
         public void ReceiveExp(int amount)
         {
             Exp += amount;
-            while(Exp > ExpFormula(Lvl + 1))
+            while(Exp >= ExpFormula(Lvl + 1))
                 LevelUp();
             Exp_OnChange(this);
             // 500 * (level ^ 2) - (500 * level)
