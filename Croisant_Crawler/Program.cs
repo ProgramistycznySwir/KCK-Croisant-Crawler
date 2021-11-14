@@ -1,4 +1,5 @@
 ﻿using System;
+using Croisant_Crawler.Data;
 
 namespace Croisant_Crawler
 {
@@ -17,11 +18,11 @@ namespace Croisant_Crawler
         public static void Doodling()
         {
             Console.Clear();
-            Console.WriteLine("Line1");
-            Console.WriteLine("Line2");
-            Console.WriteLine("Line3");
-            Console.WriteLine("Line4");
-            Drawing.Draw.At(Data.Vector2Int.Right, " \n \n \n ");
+            
+            // float value = MyMath.Lerp(0, 1, 1f);
+            ValueInRangeInt value = new ValueInRangeInt(0, 100, 100);
+            Console.WriteLine(value.Percent);
+
             Console.ReadKey();
         }
     }
