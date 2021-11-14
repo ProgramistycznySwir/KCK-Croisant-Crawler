@@ -1,8 +1,4 @@
-namespace Croisant_Crawler.Core
-{
-    public static class Enemies_Mockup
-    {
-        public static Stats Goblin(int level)
+public static Stats Goblin(int level)
             => new Stats(
                 name: "Goblin",
                 vit: (int)(3 + (1.5 * level)),
@@ -68,15 +64,3 @@ namespace Croisant_Crawler.Core
                 def: (int)(2 + (1.5 * level)),
                 arm: (int)(1 + (1.5 * level))
             );
-
-
-        // {
-        //     Stats stats = new();
-        //     stats.Name = "Goblin";
-        //     stats.Vit = (int)(3 + (1.5 * level));
-        //     stats.Str = (int)(2 + (1 * level));
-        //     stats.Agi = (int)(4 + (2 * level));
-        //     return stats;
-        // }
-    }
-}

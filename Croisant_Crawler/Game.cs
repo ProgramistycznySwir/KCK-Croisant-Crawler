@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Croisant_Crawler.Core;
 using Croisant_Crawler.Data;
 using Croisant_Crawler.Drawing;
 
