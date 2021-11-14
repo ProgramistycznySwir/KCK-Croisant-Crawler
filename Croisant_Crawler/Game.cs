@@ -16,6 +16,9 @@ namespace Croisant_Crawler
             // Initializing screen:
             Console.CursorVisible = false;
 
+            // Initializing list of enemy.
+            EnemyList.LoadFromJson();
+
             // Initializing player data.
             PlayerStats player = new PlayerStats();
 
@@ -29,7 +32,7 @@ namespace Croisant_Crawler
             // Drawing first view.
             Map_View.ReRenderMapView(floor, player, drawAll: false);
 
-            Enemies_List.GenerateEnemies();
+            // Enemies_List.GenerateEnemies();
 
             /// Game loop:
             ConsoleKey key;

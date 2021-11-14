@@ -34,7 +34,7 @@ namespace Croisant_Crawler.Drawing
         public static void Over(Vector2Int pos, int space, string word)
         {
             if(word.Length > space)
-                word = word.Take(space - 3) + "...";
+                word = word.Remove(space - 3) + "...";
             At(pos, new string(' ', space));
             At(pos, word);
         }

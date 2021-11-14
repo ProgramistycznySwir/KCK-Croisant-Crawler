@@ -71,6 +71,7 @@ namespace Croisant_Crawler
             view.DelimitTurn(0);
             view.Log("Hero has defeated all enemies.");
             view.DisplayPrompt("You've won, press [enter] key to continue adventure.");
+            Wait();
             return FightResult.Victory;
         }
 

@@ -18,11 +18,11 @@ namespace Croisant_Crawler.Drawing
         public Fight_View(PlayerStats player, Fight fight)
         {
             // Init player stats view:
-            PlayerView = new PlayerStats_View((0, 0))
+            PlayerView = new PlayerStats_View((0, 1))
                     .SubscribeToStatChanges(player)
                     .DrawPlayerStats(player);
 
-            EnemyViewCorner = (PlayerView.Width + 1, 0);
+            EnemyViewCorner = (PlayerView.Width + 1, 1);
 
             EnemyViews = new();
             for(int i = 0; i < fight.enemies.Count; i++)
@@ -40,7 +40,7 @@ namespace Croisant_Crawler.Drawing
         public void DisplayPrompt(string actionPrompt)
         {
             // At bottom of screen.
-            Draw.Over((0, Console.BufferHeight - 10), Console.BufferWidth, actionPrompt);
+            Draw.Over((0, 0), Console.BufferWidth, actionPrompt);
         }
 
         public void Log(string log)

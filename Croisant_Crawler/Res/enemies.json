@@ -1,0 +1,93 @@
+[
+  {
+    "Name": "Goblin",
+    "Base_Vit": 3,
+    "Level_Vit": 1.5,
+    "Base_Str": 2,
+    "Level_Str": 1,
+    "Base_Agi": 4,
+    "Level_Agi": 2,
+    "Base_Def": 0,
+    "Level_Def": 0,
+    "Base_Arm": 0,
+    "Level_Arm": 0
+  }, 
+  {
+    "Name": "Spider",
+    "Base_Vit": 2,
+    "Level_Vit": 1.5,
+    "Base_Str": 1,
+    "Level_Str": 1,
+    "Base_Agi": 6,
+    "Level_Agi": 3,
+    "Base_Def": 1,
+    "Level_Def": 1,
+    "Base_Arm": 0,
+    "Level_Arm": 0
+  }, 
+  {
+    "Name": "Bandit",
+    "Base_Vit": 4,
+    "Level_Vit": 2,
+    "Base_Str": 3,
+    "Level_Str": 1,
+    "Base_Agi": 2,
+    "Level_Agi": 1.5,
+    "Base_Def": 1,
+    "Level_Def": 1,
+    "Base_Arm": 1,
+    "Level_Arm": 1.5
+  }, 
+  {
+    "Name": "Skeleton",
+    "Base_Vit": 2,
+    "Level_Vit": 2,
+    "Base_Str": 5,
+    "Level_Str": 2,
+    "Base_Agi": 1,
+    "Level_Agi": 1,
+    "Base_Def": 0,
+    "Level_Def": 0,
+    "Base_Arm": 2,
+    "Level_Arm": 2
+  }, 
+  {
+    "Name": "Slime",
+    "Base_Vit": 5,
+    "Level_Vit": 3,
+    "Base_Str": 2,
+    "Level_Str": 1,
+    "Base_Agi": 1,
+    "Level_Agi": 1,
+    "Base_Def": 2,
+    "Level_Def": 1.5,
+    "Base_Arm": 1,
+    "Level_Arm": 1.5
+  }, 
+  {
+    "Name": "Golem",
+    "Base_Vit": 3,
+    "Level_Vit": 2,
+    "Base_Str": 3,
+    "Level_Str": 1.5,
+    "Base_Agi": 1,
+    "Level_Agi": 0.5,
+    "Base_Def": 0.5,
+    "Level_Def": 0.5,
+    "Base_Arm": 20,
+    "Level_Arm": 10
+  },
+  {
+    "Name": "Orc",
+    "Base_Vit": 3,
+    "Level_Vit": 2,
+    "Base_Str": 3,
+    "Level_Str": 1.5,
+    "Base_Agi": 1.5,
+    "Level_Agi": 1,
+    "Base_Def": 2,
+    "Level_Def": 0.5,
+    "Base_Arm": 2,
+    "Level_Arm": 1
+  }
+]

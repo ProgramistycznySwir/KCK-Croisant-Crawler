@@ -6,7 +6,7 @@ namespace Croisant_Crawler.Drawing
 {
     public class Enemy_View
     {
-        public static readonly Vector2Int Size = (20, 3);
+        public static readonly Vector2Int Size = (30, 3);
 
         public RectRangeInt ViewRect { get; private set; }
         public Vector2Int Corner => ViewRect.MinCorner;

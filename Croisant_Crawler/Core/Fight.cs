@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Croisant_Crawler.Data;
 
 namespace Croisant_Crawler.Core
 {
@@ -14,9 +15,16 @@ namespace Croisant_Crawler.Core
 
         void GenerateFight(int distanceFromStart)
         {
-            // TODO MID: Implement propper enemies generation.
-            enemies.Add(Enemies_Mockup.Slime(distanceFromStart / 2));
-            enemies.Add(Enemies_Mockup.Slime(distanceFromStart / 2));
+            int enemyCount = 1
+                    + ((distanceFromStart > 3) ? 1 : 0)
+                    + ((distanceFromStart > 5) ? 1 : 0)
+                    + ((distanceFromStart > 8) ? 1 : 0);
+            
+            for(int i = 0; i < enemyCount; i++)
+                enemies.Add(
+                    EnemyList.GenerateEnemy(
+                        MyMath.rng.Next(EnemyList.EnemyCount),
+                        distanceFromStart / 2 + MyMath.rng.Next(1)));
         }
     }
 }

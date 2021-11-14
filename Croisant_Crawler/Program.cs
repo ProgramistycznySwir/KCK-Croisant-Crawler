@@ -1,4 +1,5 @@
 ﻿using System;
+using Croisant_Crawler.Core;
 using Croisant_Crawler.Data;
 
 namespace Croisant_Crawler
@@ -25,6 +26,8 @@ namespace Croisant_Crawler
             // float value = MyMath.Lerp(0, 1, 1f);
             ValueInRangeInt value = new ValueInRangeInt(100, 200, 150);
             Console.WriteLine(value.Percent);
+
+            EnemyList.DEBUG_CreateExampleFile();
 
             Console.ReadKey();
         }
