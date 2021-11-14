@@ -67,6 +67,7 @@ namespace Croisant_Crawler.Core
                 def: (int)(2 + (1.5 * level)),
                 arm: (int)(1 + (1.5 * level))
             );
+
         // {
         //     Stats stats = new();
         //     stats.Name = "Goblin";
