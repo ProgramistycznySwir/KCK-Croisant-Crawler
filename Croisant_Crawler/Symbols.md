@@ -9,6 +9,6 @@
 
 ## Do zrobienia jeszcze:
 -[ ] Rozdawanie skill point'ów  
--[ ] Jakieś ciekawsze generowanie przeciwników (na razie wszędzie generuje 2 slime'y)  
+-[x] Jakieś ciekawsze generowanie przeciwników (na razie wszędzie generuje 2 slime'y)  
 -[ ] Ekwipunek  
 -[ ] Wyświetlanie szczegółowych danych o wrogach  
