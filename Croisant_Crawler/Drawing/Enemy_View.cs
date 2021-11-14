@@ -6,12 +6,16 @@ namespace Croisant_Crawler.Drawing
     {
         public readonly Stats Enemy;
 
-        public Enemy_View(Stats enemy)
+        // public Enemy_View(Stats enemy)
+        // {
+        //     Enemy = enemy;
+        // }
+        public void SubscribeToStatChanges(Stats enemy)
         {
-            Enemy = enemy;
+            enemy.HP_OnChange  += this.UpdateHP;
         }
 
-        public void UpdateHP()
+        public void UpdateHP(Stats enemy)
         {
             
         }

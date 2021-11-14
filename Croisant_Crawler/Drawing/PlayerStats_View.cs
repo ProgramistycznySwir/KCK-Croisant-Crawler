@@ -36,30 +36,30 @@ namespace Croisant_Crawler.Drawing
             Draw.Over(PlayerStatsCorner + (1, 2), Width - 2, $"HP: {stats.HP.value}/{stats.HP.range.max}");
             Draw.Bar(PlayerStatsCorner + (1, 3), lenght: 10, value: stats.HP, color: ConsoleColor.Red, addPercent: true);
         }
-        public void UpdateVit(Stats stats)
+        public void UpdateVit(PlayerStats player)
         {
             if(IsActive)
-                Draw.Over(PlayerStatsCorner + (1, 4), Width - 2, $"Vit: {stats.Vit}");
+                Draw.Over(PlayerStatsCorner + (1, 4), Width - 2, $"Vit: {player.Vit}");
         }
-        public void UpdateStr(Stats stats)
+        public void UpdateStr(PlayerStats player)
         {
             if(IsActive)
-                Draw.Over(PlayerStatsCorner + (1, 5), Width - 2, $"Str: {stats.Str}");
+                Draw.Over(PlayerStatsCorner + (1, 5), Width - 2, $"Str: {player.Str}");
         }
-        public void UpdateAgi(Stats stats)
+        public void UpdateAgi(PlayerStats player)
         {
             if(IsActive)
-                Draw.Over(PlayerStatsCorner + (1, 6), Width - 2, $"Agi: {stats.Agi}");
+                Draw.Over(PlayerStatsCorner + (1, 6), Width - 2, $"Agi: {player.Agi}");
         }
-        public void UpdateDef(Stats stats)
+        public void UpdateDef(PlayerStats player)
         {
             if(IsActive)
-                Draw.Over(PlayerStatsCorner + (1, 7), Width - 2, $"Def: {stats.Def}");
+                Draw.Over(PlayerStatsCorner + (1, 7), Width - 2, $"Def: {player.Def}");
         }
-        public void UpdateArm(Stats stats)
+        public void UpdateArm(PlayerStats player)
         {
             if(IsActive)
-                Draw.Over(PlayerStatsCorner + (1, 8), Width - 2, $"Arm: {stats.Arm}");
+                Draw.Over(PlayerStatsCorner + (1, 8), Width - 2, $"Arm: {player.Arm}");
         }
 
         public void DrawPlayerStats(PlayerStats player)

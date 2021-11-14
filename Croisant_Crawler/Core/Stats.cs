@@ -37,6 +37,7 @@ namespace Croisant_Crawler.Core
             _HP.value -= CalculateDamage(damage);
             if(_HP.IsMin)
                 Die();
+            HP_OnChange(this);
         }
 
         private void Die()
@@ -52,6 +53,7 @@ namespace Croisant_Crawler.Core
 
             if(firstCalculation)
                 _HP.value = _HP.range.max;
+            HP_OnChange(this);
         }
 
         public int CalculateDamage(int baseDamage)

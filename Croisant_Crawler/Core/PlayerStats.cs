@@ -46,19 +46,19 @@ namespace Croisant_Crawler.Core
             DEBUG_GiveBasicStuff();
         }
 
-        public override void TakeDamage(int damage)
-        {
-            base.TakeDamage(damage);
-            HP_OnChange(this);
-        }
+        // public override void TakeDamage(int damage)
+        // {
+        //     base.TakeDamage(damage);
+        //     HP_OnChange(this);
+        // }
 
-        protected override void RecalculateHP(bool firstCalculation = false)
-        {
-            base.RecalculateHP(firstCalculation);
+        // protected override void RecalculateHP(bool firstCalculation = false)
+        // {
+        //     base.RecalculateHP(firstCalculation);
 
-            if(firstCalculation is false)
-                HP_OnChange(this);
-        }
+        //     if(firstCalculation is false)
+        //         HP_OnChange(this);
+        // }
 
         public void DEBUG_GiveBasicStuff()
         {
