@@ -14,7 +14,6 @@ namespace Croisant_Crawler
         public static void Start()
         {
             // Initializing screen:
-            Console.Clear();
             Console.CursorVisible = false;
 
             // Initializing player data.
@@ -53,6 +52,7 @@ namespace Croisant_Crawler
                 newRoom.IsExplored = true;
                 // DEBUG.
                 player.TakeDamage(5);
+                player.ReceiveExp(45);
                 
                 if(newRoom.IsDangerous)
                 {

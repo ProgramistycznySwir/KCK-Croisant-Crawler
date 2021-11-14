@@ -5,7 +5,7 @@ namespace Croisant_Crawler.Core
 {
     public class Stats
     {
-        public int Level { get; set; }
+        public virtual int Lvl { get; protected set; }
 
         public string Name { get; protected set; }
 
@@ -24,9 +24,11 @@ namespace Croisant_Crawler.Core
         public virtual int Arm { get; set; }
         public float DamageReduction => Arm / (Arm + 100f);
 
-        public Stats(string name, int vit, int str, int agi, int def = 0, int arm = 0)
+        public Stats(string name, int vit, int str, int agi, int def = 0, int arm = 0, int? lvl = null)
         {
             (Name, Vit, Str, Agi, Def, Arm) = (name, vit, str, agi, def, arm);
+            if(lvl.HasValue)
+                Lvl = lvl.Value;
 
             RecalculateHP(true);
         }

@@ -7,7 +7,7 @@ namespace Croisant_Crawler.Drawing
     /// <summary>
     /// Collection of common rendering functions.
     /// </summary>
-    public static class Draw
+    public static partial class Draw
     {
         public static void At(int x, int y, string word)
         {

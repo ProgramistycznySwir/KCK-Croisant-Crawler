@@ -27,7 +27,7 @@ namespace Croisant_Crawler.Drawing
 
         public void DrawEnemy()
         {
-            Draw.At(Corner + (0, 0), $"{Stats.Name} <{Stats.Level}>:");
+            Draw.At(Corner + (0, 0), $"{Stats.Name} <{Stats.Lvl}>:");
             UpdateHP(Stats);
         }
 

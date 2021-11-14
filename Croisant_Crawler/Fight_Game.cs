@@ -13,27 +13,16 @@ namespace Croisant_Crawler
         {
             Console.Clear();
 
-            // Init player stats view:
-            PlayerStats_View player_View = new((0, 0));
-            player_View.SubscribeToStatChanges(player);
-            player_View.DrawPlayerStats(player);
 
             Fight fight = new Fight(room.distanceFromStart);
 
-            Vector2Int enemyViewsCorner = (player_View.Width + 1, 0);
-            List<Enemy_View> enemy_views = new();
-            for(int i = 0; i < fight.enemies.Count; i++)
-            {
-                enemy_views.Add(new Enemy_View(enemyViewsCorner + (2, i*Enemy_View.Size.y), fight.enemies[i]));
-            }
-
-            foreach (Enemy_View view in enemy_views)
-                view.DrawEnemy();
+            Fight_View view = new(player, fight);
 
             // Fight loop:
-            while(true)
+            ConsoleKey key;
+            while((key = Console.ReadKey(true).Key) is not ConsoleKey.Escape)
             {
-                
+                view.EnemySelector.SetActive(true).UpdateCursor(key);
             }
         }
     }

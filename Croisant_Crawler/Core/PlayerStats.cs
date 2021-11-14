@@ -11,6 +11,14 @@ namespace Croisant_Crawler.Core
         public Vector2Int position;
 
         // public Action<PlayerStats> HP_OnChange;
+        // For now formula is flat
+        // public float Lvl => 1 + (Exp / 50);
+        public int Exp {get; private set;}
+        public Action<PlayerStats> Exp_OnChange;
+        public const int ExpPerLevel = 50;
+
+        public int SkillPoints { get; private set; }
+        public const int SkillPointsPerLevel = 5;
 
         public int Vit_base { get => base.Vit; set => base.Vit = value; }
         public int Vit_eq { get; private set; }
@@ -41,10 +49,27 @@ namespace Croisant_Crawler.Core
         public List<Item> accesories = new(4);
 
         public PlayerStats()
-            : base("Hero", 5, 5, 5)
+            : base("Hero", 5, 5, 5, lvl: 1)
         {
             DEBUG_GiveBasicStuff();
         }
+
+        public void ReceiveExp(int amount)
+        {
+            Exp += amount;
+            while(Exp > ExpFormula(Lvl + 1))
+                LevelUp();
+            Exp_OnChange(this);
+            // 500 * (level ^ 2) - (500 * level)
+        }
+        public static int ExpFormula(int level)
+            => (ExpPerLevel / 2) * level * (level - 1);
+        void LevelUp()
+        {
+            Lvl += 1;
+            SkillPoints += SkillPointsPerLevel;
+        }
+
 
         // public override void TakeDamage(int damage)
         // {

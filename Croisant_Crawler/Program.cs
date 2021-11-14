@@ -13,6 +13,9 @@ namespace Croisant_Crawler
             // Console.WriteLine(player.DamageReduction);
 
             Game.Start();
+
+            // Easter egg.
+            Console.WriteLine("Thank you for playing Wing Commander.");
         }
 
         public static void Doodling()
@@ -20,7 +23,7 @@ namespace Croisant_Crawler
             Console.Clear();
             
             // float value = MyMath.Lerp(0, 1, 1f);
-            ValueInRangeInt value = new ValueInRangeInt(0, 100, 100);
+            ValueInRangeInt value = new ValueInRangeInt(100, 200, 150);
             Console.WriteLine(value.Percent);
 
             Console.ReadKey();
