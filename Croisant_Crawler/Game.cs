@@ -21,8 +21,6 @@ namespace Croisant_Crawler
 
             // Initializing player data.
             PlayerStats player = new PlayerStats();
-            // DEBUG:
-            player.ReceiveExp(5000);
 
             // Generating level data.
             Floor floor = new Floor((6, 6));
@@ -71,9 +69,7 @@ namespace Croisant_Crawler
                 if(newRoom.IsExplored is false)
                     RunSummary.IncExploredRooms();
                 newRoom.IsExplored = true;
-                // DEBUG.
-                // player.TakeDamage(5);
-                // player.ReceiveExp(45);
+                
                 if(newRoom.IsDangerous)
                 {
                     Map_View.DisplayPrompt("You've encountered enemies in this room, press [enter] to start combat.");
