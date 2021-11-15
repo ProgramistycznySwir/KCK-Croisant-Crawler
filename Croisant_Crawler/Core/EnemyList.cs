@@ -32,7 +32,7 @@ namespace Croisant_Crawler.Core
             list.Add(new Stats_Prototype());
             list.Add(new Stats_Prototype());
 
-            File.WriteAllText("enemies_example.json", JsonSerializer.Serialize<List<Stats_Prototype>>(list));
+            File.WriteAllText("Res/enemies_example.json", JsonSerializer.Serialize<List<Stats_Prototype>>(list));
         }
     }
 

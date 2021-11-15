@@ -44,8 +44,8 @@ namespace Croisant_Crawler.Drawing
 
         public static void UpdateHP(PlayerStats player)
         {
-            Draw.Line(7, $"Health Points: {player.HP.value}");
-            Draw.Line(8, $"  Max Health Points: {player.HP.range.max}");
+            Draw.Line(7, $"Max Health Points: {player.HP.range.max}");
+            Draw.Line(8, $"  Health Points: {player.HP.value}");
             Draw.Bar((2, 9),
                     lenght: 20,
                     value: player.HP,
@@ -61,22 +61,23 @@ namespace Croisant_Crawler.Drawing
         public static void UpdateStr(PlayerStats player)
         {
             Draw.Line(11, $"Strenght: {player.Str}");
+            Draw.Line(12, $"  Damage: {player.DamageRange.min}-{player.DamageRange.max}");
         }
 
         public static void UpdateAgi(PlayerStats player)
         {
-            Draw.Line(12, $"Agility: {player.Agi}");
+            Draw.Line(13, $"Agility: {player.Agi}");
         }
 
         public static void UpdateDef(PlayerStats player)
         {
-            Draw.Line(13, $"Defence: {player.Def}  (flat damage reduction)");
+            Draw.Line(14, $"Defence: {player.Def}  (flat damage reduction)");
         }
 
         public static void UpdateArm(PlayerStats player)
         {
-            Draw.Line(14, $"Armor: {player.Arm}");
-            Draw.Line(15, $"  Damage reduction: {(int)(player.DamageReduction * 100)}%");
+            Draw.Line(15, $"Armor: {player.Arm}");
+            Draw.Line(16, $"  Damage reduction: {(int)(player.DamageReduction * 100)}%");
         }
     }
 }

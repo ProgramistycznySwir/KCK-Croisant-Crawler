@@ -7,7 +7,7 @@ namespace Croisant_Crawler.Drawing
 {
     public class Fight_View
     {
-        PlayerStats_View PlayerView;
+        public readonly PlayerStats_View PlayerView;
 
         public Vector2Int EnemyViewCorner;
         List<Enemy_View> EnemyViews;
@@ -21,8 +21,9 @@ namespace Croisant_Crawler.Drawing
             PlayerView = new PlayerStats_View((0, 1))
                     .SubscribeToStatChanges(player)
                     .DrawPlayerStats(player);
+            Stats_View.Init(PlayerView.ViewRect.MaxCorner.Scale(1, 0) + (1, 1));
 
-            EnemyViewCorner = (PlayerView.Width + 1, 1);
+            EnemyViewCorner = Stats_View.ViewRect.MaxCorner.Scale(1, 0) + (1, 1);
 
             EnemyViews = new();
             for(int i = 0; i < fight.enemies.Count; i++)

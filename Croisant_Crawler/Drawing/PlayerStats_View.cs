@@ -6,7 +6,7 @@ namespace Croisant_Crawler.Drawing
 {
     public class PlayerStats_View
     {
-        public static readonly Vector2Int Size = (20, 12);
+        public static readonly Vector2Int Size = (20, 13);
 
         public RectRangeInt ViewRect { get; private set; }
         public Vector2Int Corner => ViewRect.MinCorner;
@@ -28,6 +28,22 @@ namespace Croisant_Crawler.Drawing
             player.Agi_OnChange += this.UpdateAgi;
             player.Def_OnChange += this.UpdateDef;
             player.Arm_OnChange += this.UpdateArm;
+            player.Dmg_OnChange += this.UpdateDmg;
+            
+            // For chaining setup methods.
+            return this;
+        }
+
+        public PlayerStats_View UnsubscribeToStatChanges(PlayerStats player)
+        {
+            player.Exp_OnChange -= this.UpdateExp;
+            player.HP_OnChange  -= this.UpdateHP;
+            player.Vit_OnChange -= this.UpdateVit;
+            player.Str_OnChange -= this.UpdateStr;
+            player.Agi_OnChange -= this.UpdateAgi;
+            player.Def_OnChange -= this.UpdateDef;
+            player.Arm_OnChange -= this.UpdateArm;
+            player.Dmg_OnChange -= this.UpdateDmg;
             
             // For chaining setup methods.
             return this;
@@ -74,9 +90,13 @@ namespace Croisant_Crawler.Drawing
         public void UpdateArm(PlayerStats player)
         {
             if(IsActive)
-                Draw.Over(Corner + (1, 11), Width - 2, $"Arm: {player.Arm}");
+                Draw.Over(Corner + (1, 11), Width - 2, $"Arm: {player.Arm} ({(int)(player.DamageReduction*100)}%)");
         }
-
+        public void UpdateDmg(Stats stats)
+        {
+            if(IsActive)
+                Draw.Over(Corner + (1, 12), Width - 2, $"Dmg: {stats.DamageRange.min}-{stats.DamageRange.max}");
+        }
         public PlayerStats_View DrawPlayerStats(PlayerStats player)
         {
             IsActive = true;
@@ -91,6 +111,7 @@ namespace Croisant_Crawler.Drawing
             UpdateAgi(player);
             UpdateDef(player);
             UpdateArm(player);
+            UpdateDmg(player);
 
             // For chaining setup methods.
             return this;

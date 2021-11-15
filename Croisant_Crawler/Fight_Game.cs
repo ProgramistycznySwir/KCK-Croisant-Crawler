@@ -22,7 +22,7 @@ namespace Croisant_Crawler
             Wait();
 
             // Fight loop:
-            ConsoleKey key;
+            ConsoleKey key = ConsoleKey.X;
             for(int turn = 1; true; turn++)
             {
                 view.DelimitTurn(turn);
@@ -34,10 +34,15 @@ namespace Croisant_Crawler
                 view.DisplayPrompt("Choose target, accept with [D], back off action with [A].");
                 goto_ChooseTargetAgain:
                 view.EnemySelector.SetActive(true);
-                while((key = TakeInput()) is not ConsoleKey.D or ConsoleKey.A)
+                int selectedTargetIndex;
+                Stats selectedTarget;
+                do
+                {
                     view.EnemySelector.UpdateCursor(key);
-                int selectedTargetIndex = view.EnemySelector.CursorIndex;
-                Stats selectedTarget = fight.enemies[selectedTargetIndex];
+                    selectedTargetIndex = view.EnemySelector.CursorIndex;
+                    selectedTarget = fight.enemies[selectedTargetIndex];
+                    Stats_View.DrawStats(selectedTarget);
+                } while((key = TakeInput()) is not ConsoleKey.D or ConsoleKey.A);
                 if(selectedTarget.IsDead)
                     goto goto_ChooseTargetAgain;
                 view.EnemySelector.SetActive(false);
@@ -53,7 +58,7 @@ namespace Croisant_Crawler
                     player.ReceiveExp(PlayerStats.ExpGainFormula(player, selectedTarget));
                 }
                 if (fight.enemies.All(enemy => enemy.IsDead))
-                    return Victory(view);
+                    return Victory(view, player);
 
                 foreach(Stats enemy in fight.enemies)
                 {
@@ -66,8 +71,10 @@ namespace Croisant_Crawler
             }
         }
 
-        static FightResult Victory(Fight_View view)
+        static FightResult Victory(Fight_View view, PlayerStats player)
         {
+            view.PlayerView.UnsubscribeToStatChanges(player);
+
             view.DelimitTurn(0);
             view.Log("Hero has defeated all enemies.");
             view.DisplayPrompt("You've won, press [enter] key to continue adventure.");
