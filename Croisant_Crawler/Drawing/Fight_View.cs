@@ -38,10 +38,7 @@ namespace Croisant_Crawler.Drawing
         }
 
         public void DisplayPrompt(string actionPrompt)
-        {
-            // At bottom of screen.
-            Draw.Over((0, 0), Console.BufferWidth, actionPrompt);
-        }
+            => Common.DisplayPrompt(actionPrompt);
 
         public void Log(string log)
             => LogView.AddLog(log);

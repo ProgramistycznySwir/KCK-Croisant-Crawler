@@ -8,7 +8,7 @@
 ☷	9783	2637	 	TRIGRAM FOR EARTH  
 
 ## Do zrobienia jeszcze:
--[ ] Rozdawanie skill point'ów  
+-[x] Rozdawanie skill point'ów  
 -[x] Jakieś ciekawsze generowanie przeciwników (na razie wszędzie generuje 2 slime'y)  
 -[ ] Ekwipunek  
 -[ ] Wyświetlanie szczegółowych danych o wrogach  

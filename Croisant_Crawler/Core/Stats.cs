@@ -27,7 +27,8 @@ namespace Croisant_Crawler.Core
         public bool IsDead { get; protected set; }
         public Action<Stats> IsDead_OnChange;
 
-        RangeInt DamageRange;
+        public RangeInt DamageRange { get; protected set; }
+        public Action<Stats> Dmg_OnChange;
         public int GetDamage()
             => DamageRange.RandomInt;
 
@@ -76,16 +77,14 @@ namespace Croisant_Crawler.Core
         protected virtual void RecalculateDamageRange()
         {
             DamageRange = new RangeInt(Str * 2, Str * 3);
+
+            if(Dmg_OnChange is not null)
+                Dmg_OnChange(this);
         }
 
         public int CalculateDamageReceived(int baseDamage)
         {
             return (int)Math.Max(baseDamage * (1-DamageReduction) - Def, 1);
-        }
-
-        public static int ExperienceFormula(PlayerStats player, Stats enemy)
-        {
-            return 25 + Math.Min((enemy.Lvl - player.Lvl) * 10, 0);
         }
     }
 }

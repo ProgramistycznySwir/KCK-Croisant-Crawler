@@ -21,6 +21,8 @@ namespace Croisant_Crawler
 
             // Initializing player data.
             PlayerStats player = new PlayerStats();
+            // DEBUG:
+            player.ReceiveExp(5000);
 
             // Generating level data.
             Floor floor = new Floor((6, 6));
@@ -32,12 +34,24 @@ namespace Croisant_Crawler
             // Drawing first view.
             Map_View.ReRenderMapView(floor, player, drawAll: false);
 
-            // Enemies_List.GenerateEnemies();
+
+            Map_View.DisplayPrompt("Welcome to Croisant_Crawler, find exit out of dungeon, press [enter] to start game.");
+            Wait();
 
             /// Game loop:
             ConsoleKey key;
-            while((key = Console.ReadKey(true).Key) is not ConsoleKey.Escape)
+            while(true)
             {
+                Map_View.DisplayPrompt("Move through rooms using [W], [A], [S], [D]. [Q] to open Hero Tab");
+                key = TakeInput();
+
+                if(key is ConsoleKey.Q)
+                {
+                    Map_View.SetActive(false);
+                    HeroTab.Open(player);
+                    Map_View.ReRenderMapView(floor, player);
+                }
+
                 var nextPos = player.position + key switch{
                         ConsoleKey.W => Vector2Int.Down,
                         ConsoleKey.D => Vector2Int.Right,
@@ -62,6 +76,7 @@ namespace Croisant_Crawler
                 // player.ReceiveExp(45);
                 if(newRoom.IsDangerous)
                 {
+                    Map_View.DisplayPrompt("You've encountered enemies in this room, press [enter] to start combat.");
                     Map_View.AlertPlayer(player, "[ENTER]");
                     Wait();
 
@@ -94,6 +109,13 @@ namespace Croisant_Crawler
         public static void Wait()
         {
             while(Console.ReadKey(true).Key is not ConsoleKey.Enter);
+        }
+        public static ConsoleKey TakeInput()
+        {
+            ConsoleKey key = Console.ReadKey(true).Key;
+            if(key is ConsoleKey.Escape)
+                System.Environment.Exit(0);
+            return key;
         }
     }
 }

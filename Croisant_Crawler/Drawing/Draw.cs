@@ -38,6 +38,8 @@ namespace Croisant_Crawler.Drawing
             At(pos, new string(' ', space));
             At(pos, word);
         }
+        public static void Line(int line, string word)
+            => Over((0, line), Console.BufferWidth, word);
 
 
         public static void SmallRect(Vector2Int pos)

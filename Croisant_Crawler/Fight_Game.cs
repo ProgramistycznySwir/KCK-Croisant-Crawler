@@ -50,7 +50,7 @@ namespace Croisant_Crawler
                 if(selectedTarget.IsDead)
                 {
                     view.Log(DeathMessage($"[{selectedTargetIndex + 1}]{selectedTarget.Name}"));
-                    player.ReceiveExp(Stats.ExperienceFormula(player, selectedTarget));
+                    player.ReceiveExp(PlayerStats.ExpGainFormula(player, selectedTarget));
                 }
                 if (fight.enemies.All(enemy => enemy.IsDead))
                     return Victory(view);

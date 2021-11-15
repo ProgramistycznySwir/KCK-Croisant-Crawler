@@ -9,8 +9,8 @@ namespace Croisant_Crawler.Drawing
         public static bool IsActive;
 
         public static readonly Vector2Int roomSize = (5, 4);
-        public static readonly Vector2Int mapCorner = (1, 1);
-        public static Vector2Int playerStatsCorner => CurrentMapViewBounds.MaxCorner.Scale((1, 0)) + Vector2Int.Right;
+        public static readonly Vector2Int mapCorner = (1, 2);
+        public static Vector2Int playerStatsCorner => CurrentMapViewBounds.MaxCorner.Scale((1, 0)) + (1, 1);
 
         public static RectRangeInt CurrentMapViewBounds { get; private set; }
 
@@ -18,7 +18,7 @@ namespace Croisant_Crawler.Drawing
 
         public static void Init(PlayerStats player, Floor floor)
         {
-            CurrentMapViewBounds = new RectRangeInt(floor.mapBounds.MaxCorner.Scale(roomSize + Vector2Int.One) - Vector2Int.Up);
+            CurrentMapViewBounds = new RectRangeInt((0, 1), floor.mapBounds.MaxCorner.Scale(roomSize + Vector2Int.One));
 
             playerStats_View ??= new PlayerStats_View(playerStatsCorner);
             playerStats_View.SubscribeToStatChanges(player);
@@ -43,9 +43,12 @@ namespace Croisant_Crawler.Drawing
             playerStats_View.IsActive = active;
         }
 
+        public static void DisplayPrompt(string actionPrompt)
+            => Common.DisplayPrompt(actionPrompt);
+
         public static void AlertPlayer(PlayerStats player, string alertMessage)
         {
-            Draw.At(player.position.Scale(roomSize) + mapCorner + Vector2Int.One, alertMessage);
+            Draw.At(player.position.Scale(roomSize) + mapCorner + Vector2Int.One, alertMessage, ConsoleColor.Red);
         }
     }
 }

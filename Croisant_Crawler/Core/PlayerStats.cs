@@ -59,7 +59,8 @@ namespace Croisant_Crawler.Core
             Exp += amount;
             while(Exp >= ExpFormula(Lvl + 1))
                 LevelUp();
-            Exp_OnChange(this);
+            if(Exp_OnChange is not null)
+                Exp_OnChange(this);
             // 500 * (level ^ 2) - (500 * level)
         }
         public static int ExpFormula(int level)
@@ -68,6 +69,41 @@ namespace Croisant_Crawler.Core
         {
             Lvl += 1;
             SkillPoints += SkillPointsPerLevel;
+        }
+        public static int ExpGainFormula(PlayerStats player, Stats enemy)
+            => 25 + Math.Min((enemy.Lvl - player.Lvl) * 10, 0);
+
+        public void UpgradeVit()
+        {
+            if(SkillPoints <= 0)
+                throw new ApplicationException("Game bug, game shouldn't allow to upgrade stats without skill points.");
+            Vit_base += 1;
+            SkillPoints -= 1;
+            if(Vit_OnChange is not null)
+                Vit_OnChange(this);
+            RecalculateHP();
+        }
+
+        public void UpgradeStr()
+        {
+            if(SkillPoints <= 0)
+                throw new ApplicationException("Game bug, game shouldn't allow to upgrade stats without skill points.");
+            Str_base += 1;
+            SkillPoints -= 1;
+            if(Str_OnChange is not null)
+                Str_OnChange(this);
+            RecalculateDamageRange();
+        }
+
+        public void UpgradeAgi()
+        {
+            if(SkillPoints <= 0)
+                throw new ApplicationException("Game bug, game shouldn't allow to upgrade stats without skill points.");
+            Agi_base += 1;
+            SkillPoints -= 1;
+            if(Agi_OnChange is not null)
+                Agi_OnChange(this);
+            RecalculateDamageRange();
         }
 
 
