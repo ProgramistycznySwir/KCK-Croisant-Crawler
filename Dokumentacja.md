@@ -7,10 +7,10 @@ c) Możliwość rozwoju bohatera poprzez statystyki i przedmioty – wprowadzeni
 
 ## 3 Szczególnie interesujące zagadnienia projektowe (problemy, z jakimi zmierzyli się programiści, sposób ich rozwiązania, ciekawe fragmenty kodu itp.)
 W pierwszych fazach projektu mieliśmy spory problem by rozdzielić odpowiednio kod na warstwę funkcjonalności i prezentacyjną, przez co non-stop przepisywaliśmy kod i wchodziliśmy sobie w drogę. Ostatecznie rozwiązaliśmy ten problem dzieląc cały projekt na 4 namespace'y<br />
-- Core - zawierający główne zachowanie gry,
-- Data - zawierający klasy danych używane w całym projekcie takie jak customowa matematyka, czy też Vector2 wręcz nadużywany w projekcie,
-- Drawing - zawieracjący wszystko co jest związane z wypisywaniem czegokolwiek do konsoli,
-- podstawowy namespace - zawierający klasy odpowiadające za zachowanie które zgrywają cały projekt w całość korzystając z Core by rozgrywać grę, oraz Drawing by wyświetlać tą grę graczowi.
+- Core - zawierający główne zachowanie gry,<br />
+- Data - zawierający klasy danych używane w całym projekcie takie jak customowa matematyka, czy też Vector2 wręcz nadużywany w projekcie,<br />
+- Drawing - zawieracjący wszystko co jest związane z wypisywaniem czegokolwiek do konsoli,<br />
+- podstawowy namespace - zawierający klasy odpowiadające za zachowanie które zgrywają cały projekt w całość korzystając z Core by rozgrywać grę, oraz Drawing by wyświetlać tą grę graczowi.<br />
 
 Ciekawym fragmentem kodu który użyliśmy w projekcie jest event driven UI gdzie to w załóżmy w klasie PlayerStats_View zmiany poszczególnych elementów są wywoływane poprzez zmiany w PlayerStats i nie ma zewnętrznego menedżera który się tym zajmuje. Co prawda nie udało nam się zrealizować tego systemu w całości i w niektórych miejscach go brakuje choć by się przydał (Stats_View), a w innych jest pozostawiony ale nigdy nie używany (playerStats.Agi_OnChange), jednak zabrakło nam czasu na zaimplementowanie tego w odpowiedni sposób.
 

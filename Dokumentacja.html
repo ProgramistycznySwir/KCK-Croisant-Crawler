@@ -1,0 +1,30 @@
+<h2>1 Opis projektu (główne założenia, jaki jest cel i istota aplikacji)</h2>
+<p>Projekt zakładał stworzenie gry z gatunku roguelike, w której gracz poruszałby się po generowanych losowo lochach zwiedzając kolejne pokoje i pokonując znajdujących się w nich przeciwników. Pokonani przeciwnicy dają graczowi punkty doświadczenia potrzebne do zdobycia poziomu i przedmioty. Przedmioty oraz zdobyte poziomy pozwalają wzmocnić statystyki bohatera. Po pokonaniu przeciwników w lochu, gracz przechodzi do następnego poziomu. Gra nie posiada fabuły ani zakończenia a po przegranej zaczyna się ją od początku. </p>
+<h2>2 Opis funkcjonalności (wymienione główne funkcjonalności oraz ich omówienie)</h2>
+<p>a) Generowanie losowego układu pokoi w lochu z losowymi zdarzeniami w pokojach – przy każdym rozpoczęciu nowej gry gracz otrzymuje unikatowe doświadczenie którego prawdopodobnie nie uda się powtórzyć przy kolejnych podejściach <br />
+b) System permanentnej śmierci – gra nie posiada opcji zapisu a każde podejście zaczyna się od pierwszego poziomu postaci i pierwszego lochu <br />
+c) Możliwość rozwoju bohatera poprzez statystyki i przedmioty – wprowadzenie elementu strategicznego pozwalającego graczowi budować postać i wypróbowywać różne podejścia do gry <br /></p>
+<h2>3 Szczególnie interesujące zagadnienia projektowe (problemy, z jakimi zmierzyli się programiści, sposób ich rozwiązania, ciekawe fragmenty kodu itp.)</h2>
+<p>W pierwszych fazach projektu mieliśmy spory problem by rozdzielić odpowiednio kod na warstwę funkcjonalności i prezentacyjną, przez co non-stop przepisywaliśmy kod i wchodziliśmy sobie w drogę. Ostatecznie rozwiązaliśmy ten problem dzieląc cały projekt na 4 namespace'y<br />
+- Core - zawierający główne zachowanie gry,<br />
+- Data - zawierający klasy danych używane w całym projekcie takie jak customowa matematyka, czy też Vector2 wręcz nadużywany w projekcie,<br />
+- Drawing - zawieracjący wszystko co jest związane z wypisywaniem czegokolwiek do konsoli,<br />
+- podstawowy namespace - zawierający klasy odpowiadające za zachowanie które zgrywają cały projekt w całość korzystając z Core by rozgrywać grę, oraz Drawing by wyświetlać tą grę graczowi.<br /></p>
+<p>Ciekawym fragmentem kodu który użyliśmy w projekcie jest event driven UI gdzie to w załóżmy w klasie PlayerStats_View zmiany poszczególnych elementów są wywoływane poprzez zmiany w PlayerStats i nie ma zewnętrznego menedżera który się tym zajmuje. Co prawda nie udało nam się zrealizować tego systemu w całości i w niektórych miejscach go brakuje choć by się przydał (Stats_View), a w innych jest pozostawiony ale nigdy nie używany (playerStats.Agi_OnChange), jednak zabrakło nam czasu na zaimplementowanie tego w odpowiedni sposób.</p>
+<p>Podczas pisania projektu używaliśmy masy funkcjonalności które pojawiły się dopiero w nowszych wersjach języka C# (takich jak patternmatching, switch-expression, method-expression, null-coalescing), co upiększa kod i zwiększa produktywność, jednak obawiamy się, że jeśli będziemy chcieli skorzystać w drugim projekcie z Unity będzie wymagana edycja niektórych z tych fragmentów (Unity korzysta z wersji 7.3 języka), jednak to dalej nie zmieni API, więc będą to zmiany w głównej mierze kosmetyczne.</p>
+<p>Kolejna kwestia to klasy znajdujące się w podstawowym namespace'ie które zamieniły się w czyste spaghetti i gdzie w całym kodzie staraliśmy się robijać zachowanie na jak najdrobniejsze klasy, to w tym przypadku potrzebna by była przebudowa architektury i zepchnięcie tego zachowania w inne rejony, ale to by wymagało czasu.</p>
+<h2>4 Instrukcja instalacji (komplet wiedzy potrzebnej użytkownikowi do zainstalowania aplikacji)</h2>
+<p>Aby odpalić grę, należy pobrać katalog z załączonego linku i uruchomić plik Croissant_Crawler.exe.</p>
+<h2>5 Instrukcja konfiguracji (jeśli użytkownik potrzebuje wykonać dodatkowe czynności niezwiązane z instalacją, np. stworzenie i wypełnienie pliku konfiguracyjnego, stworzenie katalogu tymczasowego na dysku itp.)</h2>
+<p>Nie jest wymagana żadna dodatkowa konfiguracja, gra jest gotowa do użycia.</p>
+<h2>6 Instrukcja użytkownika (komplet wiedzy potrzebnej użytkownikowi do efektywnego korzystania z aplikacji),</h2>
+<p>Gra w pierwszej linijce wyświetla możliwe akcje.
+Poruszanie postacią po mapie odbywa się za pomocą klawiszy WSAD
+W trybie mapy możemy wejść do okna rozwoju postaci za pomocą Q (i tak samo z niego wychodzimy).
+W oknie rozwoju postaci możemy ulepszać 3 statystyki postaci za pomocą przycisków V (witalność), S (siła), A (zwinność).
+Z walki można wyjść dopiero po jej ukończeniu (nie zależnie na wynik).
+W czasie walki wybieramy cel ataku za pomocą klawiszy W i S, oraz atakujemy przy pomocy D.</p>
+<h2>7 Wnioski</h2>
+<p>Projekt okazał się być prostszy niż początkowo zakładaliśmy, gdyż zbyt późno zaczęliśmy implementację i nie wszystkie ambitne pomysły zdążyliśmy przenieść na kod. Gra jest prosta i wpasowuje się w wybrany przez nas gatunek, sam wybór zaś podyktowany był po części wymogiem stworzenia aplikacji konsolowej z menu tekstowym, co jest charakterystyczne właśnie dla gatunku roguelike. Do wyboru także przyczyniło nasze zainteresowanie i doświadczenie z zakresu tworzenia gier wideo.</p>
+<h2>8 Samoocena</h2>
+<p>Uważamy, że nasza gra spełnia większość założeń przedstawionych w wymaganiach projektowych. Nie posiada jedynie animacji i możliwości zmiany parametrów konfiguracyjnych (jednak można takie łatwo wprowadzić ze względu na użycie w wielu miejscach zmiennych const).</p>
