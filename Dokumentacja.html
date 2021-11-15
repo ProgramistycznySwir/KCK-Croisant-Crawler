@@ -14,7 +14,7 @@ c) Możliwość rozwoju bohatera poprzez statystyki i przedmioty – wprowadzeni
 <p>Podczas pisania projektu używaliśmy masy funkcjonalności które pojawiły się dopiero w nowszych wersjach języka C# (takich jak patternmatching, switch-expression, method-expression, null-coalescing), co upiększa kod i zwiększa produktywność, jednak obawiamy się, że jeśli będziemy chcieli skorzystać w drugim projekcie z Unity będzie wymagana edycja niektórych z tych fragmentów (Unity korzysta z wersji 7.3 języka), jednak to dalej nie zmieni API, więc będą to zmiany w głównej mierze kosmetyczne.</p>
 <p>Kolejna kwestia to klasy znajdujące się w podstawowym namespace'ie które zamieniły się w czyste spaghetti i gdzie w całym kodzie staraliśmy się robijać zachowanie na jak najdrobniejsze klasy, to w tym przypadku potrzebna by była przebudowa architektury i zepchnięcie tego zachowania w inne rejony, ale to by wymagało czasu.</p>
 <h2>4 Instrukcja instalacji (komplet wiedzy potrzebnej użytkownikowi do zainstalowania aplikacji)</h2>
-<p>Aby odpalić grę, należy pobrać katalog z załączonego linku i uruchomić plik Croissant_Crawler.exe.</p>
+<p>Aby odpalić grę, należy pobrać katalog z załączonego linku i uruchomić plik Croissant_Crawler.csproj przy pomocy programu Visual Studio, a następnie skompilować projekt.</p>
 <h2>5 Instrukcja konfiguracji (jeśli użytkownik potrzebuje wykonać dodatkowe czynności niezwiązane z instalacją, np. stworzenie i wypełnienie pliku konfiguracyjnego, stworzenie katalogu tymczasowego na dysku itp.)</h2>
 <p>Nie jest wymagana żadna dodatkowa konfiguracja, gra jest gotowa do użycia.</p>
 <h2>6 Instrukcja użytkownika (komplet wiedzy potrzebnej użytkownikowi do efektywnego korzystania z aplikacji),</h2>
@@ -22,7 +22,7 @@ c) Możliwość rozwoju bohatera poprzez statystyki i przedmioty – wprowadzeni
 Poruszanie postacią po mapie odbywa się za pomocą klawiszy WSAD
 W trybie mapy możemy wejść do okna rozwoju postaci za pomocą Q (i tak samo z niego wychodzimy).
 W oknie rozwoju postaci możemy ulepszać 3 statystyki postaci za pomocą przycisków V (witalność), S (siła), A (zwinność).
-Z walki można wyjść dopiero po jej ukończeniu (nie zależnie na wynik).
+Z walki można wyjść dopiero po jej ukończeniu (nie zależnie od wyniku).
 W czasie walki wybieramy cel ataku za pomocą klawiszy W i S, oraz atakujemy przy pomocy D.</p>
 <h2>7 Wnioski</h2>
 <p>Projekt okazał się być prostszy niż początkowo zakładaliśmy, gdyż zbyt późno zaczęliśmy implementację i nie wszystkie ambitne pomysły zdążyliśmy przenieść na kod. Gra jest prosta i wpasowuje się w wybrany przez nas gatunek, sam wybór zaś podyktowany był po części wymogiem stworzenia aplikacji konsolowej z menu tekstowym, co jest charakterystyczne właśnie dla gatunku roguelike. Do wyboru także przyczyniło nasze zainteresowanie i doświadczenie z zakresu tworzenia gier wideo.</p>
