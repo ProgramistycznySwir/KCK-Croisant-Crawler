@@ -11,4 +11,4 @@
 -[x] Rozdawanie skill point'ów  
 -[x] Jakieś ciekawsze generowanie przeciwników (na razie wszędzie generuje 2 slime'y)  
 -[ ] Ekwipunek  
--[ ] Wyświetlanie szczegółowych danych o wrogach  
+-[x] Wyświetlanie szczegółowych danych o wrogach  
