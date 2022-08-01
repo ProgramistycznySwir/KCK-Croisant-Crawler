@@ -4,6 +4,8 @@ using Croisant_Crawler.Core;
 using Croisant_Crawler.Data;
 using Croisant_Crawler.Drawing;
 
+using static Croisant_Crawler.Helpers.ConsoleHelper;
+
 namespace Croisant_Crawler;
 
 /// <summary>
@@ -100,17 +102,5 @@ public static class Game
         Console.WriteLine($"Explored rooms: {RunSummary.ExploredRooms}");
         Console.WriteLine($"Defeated enemies: {RunSummary.DefeatedEnemies}");
         Console.WriteLine($"Highest level: { player.Lvl }");
-    }
-
-    public static void Wait()
-    {
-        while(Console.ReadKey(true).Key is not ConsoleKey.Enter);
-    }
-    public static ConsoleKey TakeInput()
-    {
-        ConsoleKey key = Console.ReadKey(true).Key;
-        if(key is ConsoleKey.Escape)
-            System.Environment.Exit(0);
-        return key;
     }
 }

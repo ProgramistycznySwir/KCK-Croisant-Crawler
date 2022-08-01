@@ -2,6 +2,8 @@ using System;
 using Croisant_Crawler.Core;
 using Croisant_Crawler.Drawing;
 
+using static Croisant_Crawler.Helpers.ConsoleHelper;
+
 namespace Croisant_Crawler;
 
 public static class HeroTab
@@ -39,17 +41,5 @@ public static class HeroTab
 
             HeroTab_View.UpdateSkillPoints(player);
         }
-    }
-
-    public static void Wait()
-    {
-        while(Console.ReadKey(true).Key is not ConsoleKey.Enter);
-    }
-    public static ConsoleKey TakeInput()
-    {
-        ConsoleKey key = Console.ReadKey(true).Key;
-        if(key is ConsoleKey.Escape)
-            System.Environment.Exit(0);
-        return key;
     }
 }

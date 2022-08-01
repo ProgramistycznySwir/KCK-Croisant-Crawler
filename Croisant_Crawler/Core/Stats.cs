@@ -65,7 +65,7 @@ public class Stats
     protected virtual void RecalculateHP(bool firstCalculation = false)
     {
         float hpPercent = _HP.Percent;
-        _HP.range.max = Vit * 20;
+        _HP.range = _HP.range with { max= Vit * 20 };
         _HP.value = (int)_HP.range.Evaluate(hpPercent);
 
         if(firstCalculation)

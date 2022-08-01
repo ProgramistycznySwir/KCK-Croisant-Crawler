@@ -15,15 +15,17 @@ public class Fight
 
     void GenerateFight(int distanceFromStart)
     {
-        int enemyCount = 1
+        // Logic for enemy count in battle.
+        int enemyCount_ = 1
                 + ((distanceFromStart > 3) ? 1 : 0)
                 + ((distanceFromStart > 5) ? 1 : 0)
                 + ((distanceFromStart > 8) ? 1 : 0);
         
-        for(int i = 0; i < enemyCount; i++)
-            enemies.Add(
-                EnemyList.GenerateEnemy(
-                    MyMath.rng.Next(EnemyList.EnemyCount),
-                    distanceFromStart / 2 + MyMath.rng.Next(1)));
+        // Randomizing enemies.
+        enemies = Enumerable.Range(0, enemyCount_)
+                .Map(_ => EnemyList.GenerateEnemy(
+                        index: MyMath.rng.Next(EnemyList.EnemyCount),
+                        level: distanceFromStart / 2 + MyMath.rng.Next(1)))
+                .ToList();
     }
 }

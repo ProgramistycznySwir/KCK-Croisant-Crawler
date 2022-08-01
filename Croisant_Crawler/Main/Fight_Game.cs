@@ -5,6 +5,8 @@ using Croisant_Crawler.Core;
 using Croisant_Crawler.Data;
 using Croisant_Crawler.Drawing;
 
+using static Croisant_Crawler.Helpers.ConsoleHelper;
+
 namespace Croisant_Crawler;
 
 public enum FightResult { Victory, TPK }
@@ -77,7 +79,7 @@ public static class Fight_Game
 
         view.DelimitTurn(0);
         view.Log("Hero has defeated all enemies.");
-        view.DisplayPrompt("You've won, press [enter] key to continue adventure.");
+        view.DisplayPrompt("You've won, press [enter] to continue adventure.");
         Wait();
         return FightResult.Victory;
     }
@@ -99,16 +101,4 @@ public static class Fight_Game
         => $"Hero was rewarded {amount} experience";
     static string LevelUpMessage(string amount)
         => $"Hero has leveled up.";
-
-    public static void Wait()
-    {
-        while(Console.ReadKey(true).Key is not ConsoleKey.Enter);
-    }
-    public static ConsoleKey TakeInput()
-    {
-        ConsoleKey key = Console.ReadKey(true).Key;
-        if(key is ConsoleKey.Escape)
-            System.Environment.Exit(0);
-        return key;
-    }
 }
